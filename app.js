@@ -580,11 +580,18 @@ function renderArea(areaIndex) {
 
 document.getElementById('area-back-btn').addEventListener('click', () => showScreen('map'));
 
-document.getElementById('area-prev-level').addEventListener('click', () => {
-  if (currentAreaLevel > 0) {
-    currentAreaLevel--;
-    renderArea();
-  }
+document.addEventListener('DOMContentLoaded', () => {
+    const prevLevelBtn = document.getElementById('area-prev-level');
+    
+    if (prevLevelBtn) {
+        prevLevelBtn.addEventListener('click', () => {
+            if (currentAreaLevel > 0) {
+                currentAreaLevel--;
+                renderArea();
+            }
+        });
+    }
+    // You can do the same for next level button if needed
 });
 
 document.getElementById('area-next-level').addEventListener('click', () => {
