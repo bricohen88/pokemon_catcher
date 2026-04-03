@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#FF6B6B">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="manifest.json">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>Pokemon Catcher</title>
+</head>
+<body>
+
+  <!-- MAP SCREEN -->
+  <section data-screen="map" class="screen active">
+    <div class="screen-header">
+      <h1>Pokemon Catcher!</h1>
+    </div>
+    <div class="screen-content" id="map-container"></div>
+  </section>
+
+  <!-- AREA SCREEN -->
+  <section data-screen="area" class="screen">
+    <div class="screen-header">
+      <button class="back-btn" id="area-back-btn">&#9664; Back</button>
+      <h1 id="area-title">Area Name</h1>
+    </div>
+    <div class="screen-content">
+      <div id="area-grid" class="pokemon-grid"></div>
+      <div id="area-complete-msg" class="area-complete-msg" style="display:none"></div>
+      <button id="search-btn" class="search-btn">Search for Pokemon!</button>
+    </div>
+  </section>
+
+  <!-- ENCOUNTER SCREEN -->
+  <section data-screen="encounter" class="screen">
+    <button class="back-btn encounter-back" id="encounter-back-btn">&#9664; Run Away</button>
+    <div class="encounter-container">
+      <div class="encounter-text" id="encounter-text">A wild Pokemon appeared!</div>
+      <div class="encounter-sprite-area">
+        <div class="catch-ring-wrap" id="catch-ring-wrap" style="display:none">
+          <svg class="catch-ring-svg" viewBox="0 0 200 200">
+            <circle class="catch-ring" id="catch-ring" cx="100" cy="100" r="90" fill="none" stroke-width="6"/>
+          </svg>
+        </div>
+        <div class="encounter-sprite-wrap">
+          <img id="encounter-sprite" class="encounter-sprite" src="" alt="Pokemon" crossorigin="anonymous">
+        </div>
+      </div>
+      <div class="encounter-name" id="encounter-name"></div>
+      <div class="encounter-bonus" id="encounter-bonus"></div>
+      <div class="berry-game" id="berry-game" style="display:none">
+        <div class="berry-target" id="berry-target">&#x1F353;</div>
+        <div class="berry-instruction">Tap to throw when Pokemon is in center!</div>
+      </div>
+      <div class="pokeball-zone" id="pokeball-zone">
+        <div class="pokeball" id="pokeball">
+          <div class="pokeball-top"></div>
+          <div class="pokeball-mid"></div>
+          <div class="pokeball-bottom"></div>
+        </div>
+      </div>
+      <div class="encounter-actions" id="encounter-actions">
+        <button id="berry-btn" class="action-btn berry-btn">
+          <span class="action-icon">&#x1F353;</span>
+          <span class="action-label">Feed Berry</span>
+          <span class="berry-count" id="berry-count">x3</span>
+        </button>
+        <button id="catch-btn" class="action-btn catch-btn">
+          <span class="action-icon">&#x26AA;</span>
+          <span class="action-label">Throw Pokeball!</span>
+        </button>
+      </div>
+      <button id="ring-throw-btn" class="throw-btn" style="display:none">Throw NOW!</button>
+      <button id="encounter-continue-btn" class="throw-btn" style="display:none">Continue</button>
+    </div>
+    <div id="confetti-container" class="confetti-container"></div>
+  </section>
+
+  <!-- POKEDEX SCREEN -->
+  <section data-screen="pokedex" class="screen">
+    <div class="screen-header">
+      <h1>Pokedex</h1>
+      <div class="pokedex-count" id="pokedex-count">0/20 caught</div>
+    </div>
+    <div class="screen-content">
+      <div id="pokedex-grid" class="pokemon-grid pokedex-grid"></div>
+    </div>
+  </section>
+
+  <!-- INTERACT SCREEN -->
+  <section data-screen="interact" class="screen">
+    <button class="back-btn interact-back" id="interact-back-btn">&#9664; Back</button>
+    <div class="interact-container">
+      <div class="interact-info">
+        <div class="interact-number" id="interact-number">#001</div>
+        <div class="interact-name" id="interact-name">Bulbasaur</div>
+      </div>
+      <div class="interact-sprite-area">
+        <img id="interact-sprite" class="interact-sprite" src="" alt="Pokemon" crossorigin="anonymous">
+        <div class="interact-berry" id="interact-berry" style="display:none">&#x1F353;</div>
+      </div>
+      <div class="interact-status" id="interact-status"></div>
+      <div class="happiness-bar-wrap">
+        <div class="happiness-label" id="happiness-label">Happiness</div>
+        <div class="happiness-bar">
+          <div class="happiness-fill" id="happiness-fill" style="width:0%"></div>
+        </div>
+        <div class="happiness-value" id="happiness-value">0/100</div>
+      </div>
+      <div class="interact-actions" id="interact-actions">
+        <button class="interact-btn pet-btn" id="pet-btn">
+          <span class="interact-btn-icon">&#x1F44B;</span>
+          <span class="interact-btn-label">Pet</span>
+        </button>
+        <button class="interact-btn feed-btn" id="feed-btn">
+          <span class="interact-btn-icon">&#x1F353;</span>
+          <span class="interact-btn-label">Feed</span>
+        </button>
+        <button class="interact-btn play-btn" id="play-btn">
+          <span class="interact-btn-icon">&#x1F3C3;</span>
+          <span class="interact-btn-label">Play</span>
+        </button>
+      </div>
+    </div>
+    <div id="evolve-confetti" class="confetti-container"></div>
+  </section>
+
+  <!-- STICKER STUDIO SCREEN -->
+  <section data-screen="sticker" class="screen sticker-screen">
+    <div class="screen-header">
+      <h1>Sticker Studio</h1>
+    </div>
+    <div class="sticker-layout">
+      <div class="sticker-section">
+        <div class="sticker-section-label">Choose a background:</div>
+        <div class="sticker-bg-strip" id="sticker-bg-strip">
+          <label class="sticker-bg-option upload-option">
+            <span class="bg-option-icon">&#x1F4F7;</span>
+            <span class="bg-option-label">Your Photo</span>
+            <input type="file" accept="image/*" id="photo-upload" hidden>
+          </label>
+        </div>
+      </div>
+      <div class="sticker-canvas-wrap" id="sticker-canvas-wrap">
+        <div class="sticker-placeholder" id="sticker-placeholder">Choose a background above to get started!</div>
+      </div>
+      <div class="sticker-section">
+        <div class="sticker-section-label">Your Pokemon stickers:</div>
+        <div class="sticker-strip" id="sticker-strip"></div>
+      </div>
+      <button class="save-btn sticker-save-btn" id="save-sticker-btn">Save Image</button>
+    </div>
+  </section>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav" id="bottom-nav">
+    <button class="nav-btn active" data-nav="map">
+      <span class="nav-icon">&#x1F5FA;</span>
+      <span class="nav-label">Map</span>
+    </button>
+    <button class="nav-btn" data-nav="pokedex">
+      <span class="nav-icon">&#x1F4D6;</span>
+      <span class="nav-label">Pokedex</span>
+    </button>
+    <button class="nav-btn" data-nav="sticker">
+      <span class="nav-icon">&#x1F3A8;</span>
+      <span class="nav-label">Stickers</span>
+    </button>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+</html>
