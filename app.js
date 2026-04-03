@@ -7,91 +7,103 @@ const AREAS = [
   { name: 'Mt. Moon', pokemon: [35, 39, 41, 74, 95], color: '#5C6BC0', icon: '\u{26F0}\uFE0F' },
   { name: 'Cerulean City', pokemon: [54, 79, 118, 120, 116], color: '#0288D1', icon: '\u{1F30A}' },
   { name: 'Vermilion Port', pokemon: [100, 81, 56, 66, 72], color: '#E65100', icon: '\u{26F5}' },
-  { name: 'Lavender Town', pokemon: [92, 104, 105, 37, 53], color: '#7B1FA2', icon: '\u{1F47B}' },
+  { name: 'Lavender Town', pokemon: [92, 104, 52, 37, 96], color: '#7B1FA2', icon: '\u{1F47B}' },
   { name: 'Safari Zone', pokemon: [111, 115, 123, 127, 128], color: '#827717', icon: '\u{1F335}' },
-  { name: 'Power Plant', pokemon: [125, 82, 101, 137, 143], color: '#F9A825', icon: '\u{26A1}' }
+  { name: 'Power Plant', pokemon: [125, 126, 132, 137, 143], color: '#F9A825', icon: '\u{26A1}' }
 ];
 
-const POKEMON_NAMES = {
-  1: 'Bulbasaur', 2: 'Ivysaur', 3: 'Venusaur',
-  4: 'Charmander', 5: 'Charmeleon', 6: 'Charizard',
-  7: 'Squirtle', 8: 'Wartortle', 9: 'Blastoise',
-  25: 'Pikachu', 26: 'Raichu',
-  133: 'Eevee', 134: 'Vaporeon', 135: 'Jolteon', 136: 'Flareon',
-  10: 'Caterpie', 11: 'Metapod', 12: 'Butterfree',
-  13: 'Weedle', 14: 'Kakuna', 15: 'Beedrill',
-  16: 'Pidgey', 17: 'Pidgeotto', 18: 'Pidgeot',
-  19: 'Rattata', 20: 'Raticate',
-  43: 'Oddish', 44: 'Gloom', 45: 'Vileplume',
-  35: 'Clefairy', 36: 'Clefable',
-  39: 'Jigglypuff', 40: 'Wigglytuff',
-  41: 'Zubat', 42: 'Golbat',
-  74: 'Geodude', 75: 'Graveler', 76: 'Golem',
-  95: 'Onix', 208: 'Steelix',
-  54: 'Psyduck', 55: 'Golduck',
-  79: 'Slowpoke', 80: 'Slowbro',
-  116: 'Horsea', 117: 'Seadra',
-  118: 'Goldeen', 119: 'Seaking',
-  120: 'Staryu', 121: 'Starmie',
+const POKEDEX = {
+  // Pallet Town
+  1:   { name: 'Bulbasaur',    evolvesTo: 2 },
+  2:   { name: 'Ivysaur',      evolvesTo: 3 },
+  3:   { name: 'Venusaur',     evolvesTo: null },
+  4:   { name: 'Charmander',   evolvesTo: 5 },
+  5:   { name: 'Charmeleon',   evolvesTo: 6 },
+  6:   { name: 'Charizard',    evolvesTo: null },
+  7:   { name: 'Squirtle',     evolvesTo: 8 },
+  8:   { name: 'Wartortle',    evolvesTo: 9 },
+  9:   { name: 'Blastoise',    evolvesTo: null },
+  25:  { name: 'Pikachu',      evolvesTo: 26 },
+  26:  { name: 'Raichu',       evolvesTo: null },
+  133: { name: 'Eevee',        evolvesTo: 136 },  // Stone evolution
+  134: { name: 'Vaporeon',     evolvesTo: null },
+  135: { name: 'Jolteon',      evolvesTo: null },
+  136: { name: 'Flareon',      evolvesTo: null },
+  // Viridian Forest
+  10:  { name: 'Caterpie',     evolvesTo: 11 },
+  11:  { name: 'Metapod',      evolvesTo: 12 },
+  12:  { name: 'Butterfree',   evolvesTo: null },
+  13:  { name: 'Weedle',       evolvesTo: 14 },
+  14:  { name: 'Kakuna',       evolvesTo: 15 },
+  15:  { name: 'Beedrill',     evolvesTo: null },
+  16:  { name: 'Pidgey',       evolvesTo: 17 },
+  17:  { name: 'Pidgeotto',    evolvesTo: 18 },
+  18:  { name: 'Pidgeot',      evolvesTo: null },
+  19:  { name: 'Rattata',      evolvesTo: 20 },
+  20:  { name: 'Raticate',     evolvesTo: null },
+  43:  { name: 'Oddish',       evolvesTo: 44 },
+  44:  { name: 'Gloom',        evolvesTo: 45 },
+  45:  { name: 'Vileplume',    evolvesTo: null },
+  // Mt. Moon
+  35:  { name: 'Clefairy',     evolvesTo: 36 },
+  36:  { name: 'Clefable',     evolvesTo: null },
+  39:  { name: 'Jigglypuff',   evolvesTo: 40 },
+  40:  { name: 'Wigglytuff',   evolvesTo: null },
+  41:  { name: 'Zubat',        evolvesTo: 42 },
+  42:  { name: 'Golbat',       evolvesTo: null },
+  74:  { name: 'Geodude',      evolvesTo: 75 },
+  75:  { name: 'Graveler',     evolvesTo: 76 },
+  76:  { name: 'Golem',        evolvesTo: null },
+  95:  { name: 'Onix',         evolvesTo: 208 },  // Stone evolution
+  208: { name: 'Steelix',      evolvesTo: null },
+  // Cerulean City
+  54:  { name: 'Psyduck',      evolvesTo: 55 },
+  55:  { name: 'Golduck',      evolvesTo: null },
+  79:  { name: 'Slowpoke',     evolvesTo: 80 },
+  80:  { name: 'Slowbro',      evolvesTo: null },
+  116: { name: 'Horsea',       evolvesTo: 117 },
+  117: { name: 'Seadra',       evolvesTo: null },
+  118: { name: 'Goldeen',      evolvesTo: 119 },
+  119: { name: 'Seaking',      evolvesTo: null },
+  120: { name: 'Staryu',       evolvesTo: 121 },  // Stone evolution
+  121: { name: 'Starmie',      evolvesTo: null },
   // Vermilion Port
-  100: 'Voltorb', 101: 'Electrode',
-  81: 'Magnemite', 82: 'Magneton',
-  56: 'Mankey', 57: 'Primeape',
-  66: 'Machop', 67: 'Machoke', 68: 'Machamp',
-  72: 'Tentacool', 73: 'Tentacruel',
+  100: { name: 'Voltorb',      evolvesTo: 101 },
+  101: { name: 'Electrode',    evolvesTo: null },
+  81:  { name: 'Magnemite',    evolvesTo: 82 },
+  82:  { name: 'Magneton',     evolvesTo: null },
+  56:  { name: 'Mankey',       evolvesTo: 57 },
+  57:  { name: 'Primeape',     evolvesTo: null },
+  66:  { name: 'Machop',       evolvesTo: 67 },
+  67:  { name: 'Machoke',      evolvesTo: 68 },
+  68:  { name: 'Machamp',      evolvesTo: null },
+  72:  { name: 'Tentacool',    evolvesTo: 73 },
+  73:  { name: 'Tentacruel',   evolvesTo: null },
   // Lavender Town
-  92: 'Gastly', 93: 'Haunter', 94: 'Gengar',
-  104: 'Cubone', 105: 'Marowak',
-  37: 'Vulpix', 38: 'Ninetales',
-  53: 'Persian',  52: 'Meowth',
+  37:  { name: 'Vulpix',       evolvesTo: 38 },
+  38:  { name: 'Ninetales',    evolvesTo: null },
+  52:  { name: 'Meowth',       evolvesTo: 53 },
+  53:  { name: 'Persian',      evolvesTo: null },
+  92:  { name: 'Gastly',       evolvesTo: 93 },
+  93:  { name: 'Haunter',      evolvesTo: 94 },
+  94:  { name: 'Gengar',       evolvesTo: null },
+  96:  { name: 'Drowzee',      evolvesTo: 97 },
+  97:  { name: 'Hypno',        evolvesTo: null },
+  104: { name: 'Cubone',       evolvesTo: 105 },
+  105: { name: 'Marowak',      evolvesTo: null },
   // Safari Zone
-  111: 'Rhyhorn', 112: 'Rhydon',
-  115: 'Kangaskhan',
-  123: 'Scyther',
-  127: 'Pinsir',
-  128: 'Tauros',
+  111: { name: 'Rhyhorn',      evolvesTo: 112 },
+  112: { name: 'Rhydon',       evolvesTo: null },
+  115: { name: 'Kangaskhan',   evolvesTo: null },
+  123: { name: 'Scyther',      evolvesTo: null },
+  127: { name: 'Pinsir',       evolvesTo: null },
+  128: { name: 'Tauros',       evolvesTo: null },
   // Power Plant
-  125: 'Electabuzz',
-  137: 'Porygon',
-  143: 'Snorlax'
-};
-
-// Evolution mappings: each form -> next form
-const EVOLUTIONS = {
-  1: 2, 2: 3,           // Bulbasaur -> Ivysaur -> Venusaur
-  4: 5, 5: 6,           // Charmander -> Charmeleon -> Charizard
-  7: 8, 8: 9,           // Squirtle -> Wartortle -> Blastoise
-  25: 26,               // Pikachu -> Raichu
-  10: 11, 11: 12,       // Caterpie -> Metapod -> Butterfree
-  13: 14, 14: 15,       // Weedle -> Kakuna -> Beedrill
-  16: 17, 17: 18,       // Pidgey -> Pidgeotto -> Pidgeot
-  19: 20,               // Rattata -> Raticate
-  43: 44, 44: 45,       // Oddish -> Gloom -> Vileplume
-  35: 36,               // Clefairy -> Clefable
-  39: 40,               // Jigglypuff -> Wigglytuff
-  41: 42,               // Zubat -> Golbat
-  74: 75, 75: 76,       // Geodude -> Graveler -> Golem
-  54: 55,               // Psyduck -> Golduck
-  79: 80,               // Slowpoke -> Slowbro
-  116: 117,             // Horsea -> Seadra
-  118: 119,             // Goldeen -> Seaking
-  // Vermilion Port
-  100: 101,             // Voltorb -> Electrode
-  81: 82,               // Magnemite -> Magneton
-  56: 57,               // Mankey -> Primeape
-  66: 67, 67: 68,       // Machop -> Machoke -> Machamp
-  72: 73,               // Tentacool -> Tentacruel
-  // Lavender Town
-  92: 93, 93: 94,       // Gastly -> Haunter -> Gengar
-  104: 105,             // Cubone -> Marowak
-  37: 38,               // Vulpix -> Ninetales
-  52: 53,               // Meowth -> Persian (Meowth not catchable but in chain)
-  // Safari Zone
-  111: 112,             // Rhyhorn -> Rhydon
-  // Stone evolutions (work the same for now, special mechanics later)
-  133: 136,             // Eevee -> Flareon
-  95: 208,              // Onix -> Steelix
-  120: 121              // Staryu -> Starmie
+  125: { name: 'Electabuzz',   evolvesTo: null },
+  126: { name: 'Magmar',       evolvesTo: null },
+  132: { name: 'Ditto',        evolvesTo: null },
+  137: { name: 'Porygon',      evolvesTo: null },
+  143: { name: 'Snorlax',      evolvesTo: null }
 };
 
 function spriteUrl(id) {
@@ -99,11 +111,29 @@ function spriteUrl(id) {
 }
 
 // ===== STATE =====
-let gameState = { caught: [], happiness: {}, evolved: {} };
+let gameState = { caught: [], pokemon: {} };
 let currentAreaIndex = null;
 let encounterPokemonId = null;
 let interactPokemonId = null;
 let interactBusy = false;
+
+function migrateOldSave(parsed) {
+  if (parsed.pokemon) return parsed;
+  const migrated = { caught: parsed.caught || [], pokemon: {} };
+  const oldHappiness = parsed.happiness || {};
+  const oldEvolved = parsed.evolved || {};
+  const allBaseIds = new Set([
+    ...Object.keys(oldHappiness).map(Number),
+    ...Object.keys(oldEvolved).map(Number)
+  ]);
+  for (const baseId of allBaseIds) {
+    migrated.pokemon[baseId] = {
+      happiness: oldHappiness[baseId] || 0,
+      currentForm: oldEvolved[baseId] || baseId
+    };
+  }
+  return migrated;
+}
 
 function loadState() {
   try {
@@ -111,41 +141,44 @@ function loadState() {
     if (saved) {
       const parsed = JSON.parse(saved);
       if (parsed && Array.isArray(parsed.caught)) {
-        gameState = parsed;
-        if (!gameState.happiness) gameState.happiness = {};
-        if (!gameState.evolved) gameState.evolved = {};
+        gameState = migrateOldSave(parsed);
       }
     }
   } catch (e) { /* use defaults */ }
 }
 
-function getHappiness(id) {
-  return gameState.happiness[id] || 0;
+function getPokemonData(baseId) {
+  return gameState.pokemon[baseId] || { happiness: 0, currentForm: baseId };
 }
 
-function addHappiness(id, amount) {
-  const current = getHappiness(id);
-  gameState.happiness[id] = Math.min(100, current + amount);
+function getHappiness(baseId) {
+  return getPokemonData(baseId).happiness;
+}
+
+function addHappiness(baseId, amount) {
+  if (!gameState.pokemon[baseId]) {
+    gameState.pokemon[baseId] = { happiness: 0, currentForm: baseId };
+  }
+  gameState.pokemon[baseId].happiness = Math.min(100, gameState.pokemon[baseId].happiness + amount);
   saveState();
-  return gameState.happiness[id];
+  return gameState.pokemon[baseId].happiness;
 }
 
 function getCurrentFormId(baseId) {
-  // Returns the current evolved form ID, or the base ID if not evolved
-  return gameState.evolved[baseId] || baseId;
+  return getPokemonData(baseId).currentForm;
 }
 
 function canEvolve(baseId) {
   const currentForm = getCurrentFormId(baseId);
-  return !!EVOLUTIONS[currentForm];
+  return !!POKEDEX[currentForm].evolvesTo;
 }
 
-function getDisplayId(id) {
-  return getCurrentFormId(id);
+function getDisplayId(baseId) {
+  return getCurrentFormId(baseId);
 }
 
-function getDisplayName(id) {
-  return POKEMON_NAMES[getDisplayId(id)];
+function getDisplayName(baseId) {
+  return POKEDEX[getDisplayId(baseId)].name;
 }
 
 function saveState() {
@@ -275,8 +308,8 @@ function renderArea(areaIndex) {
     const card = document.createElement('div');
     card.className = 'pokemon-card ' + (caught ? 'caught' : 'uncaught');
     card.innerHTML = `
-      <img src="${spriteUrl(id)}" alt="${caught ? POKEMON_NAMES[id] : '???'}" crossorigin="anonymous">
-      <div class="pokemon-name">${caught ? POKEMON_NAMES[id] : '???'}</div>
+      <img src="${spriteUrl(id)}" alt="${caught ? POKEDEX[id].name : '???'}" crossorigin="anonymous">
+      <div class="pokemon-name">${caught ? POKEDEX[id].name : '???'}</div>
     `;
     grid.appendChild(card);
   });
@@ -338,8 +371,8 @@ function renderEncounter(pokemonId) {
   sprite.classList.remove('hidden', 'dodging', 'happy');
   sprite.className = 'encounter-sprite';
 
-  document.getElementById('encounter-name').textContent = POKEMON_NAMES[encounterPokemonId];
-  document.getElementById('encounter-text').textContent = `A wild ${POKEMON_NAMES[encounterPokemonId]} appeared!`;
+  document.getElementById('encounter-name').textContent = POKEDEX[encounterPokemonId].name;
+  document.getElementById('encounter-text').textContent = `A wild ${POKEDEX[encounterPokemonId].name} appeared!`;
   document.getElementById('encounter-bonus').textContent = '';
   document.getElementById('encounter-bonus').className = 'encounter-bonus';
 
@@ -604,7 +637,7 @@ function executeCatch(catchRate) {
 }
 
 function onCatchSuccess() {
-  const name = POKEMON_NAMES[encounterPokemonId];
+  const name = POKEDEX[encounterPokemonId].name;
   document.getElementById('encounter-text').textContent = `Gotcha! ${name} was caught!`;
 
   catchPokemon(encounterPokemonId);
@@ -619,7 +652,7 @@ function onCatchSuccess() {
 }
 
 function onCatchEscape() {
-  const name = POKEMON_NAMES[encounterPokemonId];
+  const name = POKEDEX[encounterPokemonId].name;
   const pokeball = document.getElementById('pokeball');
   const sprite = document.getElementById('encounter-sprite');
 
@@ -665,17 +698,13 @@ function createConfetti() {
 // Get all forms a base Pokemon has been through (base + evolved stages)
 function getOwnedForms(baseId) {
   const forms = [baseId];
-  const evolvedTo = gameState.evolved[baseId];
-  if (evolvedTo) {
-    // Walk the chain from base to current form
-    let formId = baseId;
-    while (EVOLUTIONS[formId] && formId !== evolvedTo) {
-      forms.push(EVOLUTIONS[formId]);
-      formId = EVOLUTIONS[formId];
-    }
-    // If current form has gone past one step, make sure it's included
-    if (!forms.includes(evolvedTo)) forms.push(evolvedTo);
+  const currentForm = getCurrentFormId(baseId);
+  let formId = baseId;
+  while (POKEDEX[formId].evolvesTo && formId !== currentForm) {
+    forms.push(POKEDEX[formId].evolvesTo);
+    formId = POKEDEX[formId].evolvesTo;
   }
+  if (!forms.includes(currentForm)) forms.push(currentForm);
   return forms;
 }
 
@@ -685,7 +714,6 @@ function renderPokedex() {
   grid.innerHTML = '';
 
   const totalPokemon = baseIds.length;
-  document.getElementById('pokedex-count').textContent = `${gameState.caught.length}/${totalPokemon} caught`;
 
   // Build full list: for caught Pokemon, include all owned forms
   const entries = [];
@@ -702,8 +730,12 @@ function renderPokedex() {
   // Sort by Pokedex number
   entries.sort((a, b) => a.formId - b.formId);
 
+  const totalInDex = entries.length;
+  const ownedInDex = entries.filter(e => e.caught).length;
+  document.getElementById('pokedex-count').textContent = `${gameState.caught.length}/${totalPokemon} caught | ${ownedInDex}/${totalInDex} in Pokedex`;
+
   entries.forEach(({ formId, baseId, caught }) => {
-    const name = caught ? POKEMON_NAMES[formId] : '???';
+    const name = caught ? POKEDEX[formId].name : '???';
     const card = document.createElement('div');
     card.className = 'pokemon-card ' + (caught ? 'caught' : 'uncaught');
     card.innerHTML = `
@@ -874,14 +906,14 @@ function checkEvolve() {
   if (getHappiness(interactPokemonId) < 100) return;
 
   const currentForm = getCurrentFormId(interactPokemonId);
-  const evolvedId = EVOLUTIONS[currentForm];
+  const evolvedId = POKEDEX[currentForm].evolvesTo;
   if (!evolvedId) return;
 
   interactBusy = true;
   disableInteractBtns();
 
   const sprite = document.getElementById('interact-sprite');
-  const evolvedName = POKEMON_NAMES[evolvedId];
+  const evolvedName = POKEDEX[evolvedId].name;
 
   showInteractStatus('What\'s happening...?');
 
@@ -912,8 +944,11 @@ function checkEvolve() {
       }
 
       // Store evolved form and reset happiness for next evolution
-      gameState.evolved[interactPokemonId] = evolvedId;
-      gameState.happiness[interactPokemonId] = 0;
+      if (!gameState.pokemon[interactPokemonId]) {
+        gameState.pokemon[interactPokemonId] = { happiness: 0, currentForm: interactPokemonId };
+      }
+      gameState.pokemon[interactPokemonId].currentForm = evolvedId;
+      gameState.pokemon[interactPokemonId].happiness = 0;
       saveState();
 
       showInteractStatus(`Evolved into ${evolvedName}!`);
