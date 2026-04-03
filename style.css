@@ -238,6 +238,40 @@ html, body {
   font-size: 24px;
 }
 
+/* ===== LEVEL NAVIGATION ===== */
+.level-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.level-nav-spacer {
+  flex: 1;
+}
+
+.level-nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--primary);
+  color: var(--white);
+  font-size: 20px;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  touch-action: manipulation;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s;
+}
+
+.level-nav-btn:active {
+  transform: scale(0.9);
+}
+
 /* ===== POKEMON GRID ===== */
 .pokemon-grid {
   display: grid;

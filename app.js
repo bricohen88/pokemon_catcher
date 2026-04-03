@@ -2,14 +2,57 @@
 const SPRITE_BASE = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
 
 const AREAS = [
-  { name: 'Pallet Town', pokemon: [1, 4, 7, 133, 25], color: '#4CAF50', icon: '\u{1F3E0}' },
-  { name: 'Viridian Forest', pokemon: [10, 13, 16, 19, 43], color: '#2E7D32', icon: '\u{1F332}' },
-  { name: 'Mt. Moon', pokemon: [35, 39, 41, 74, 95], color: '#5C6BC0', icon: '\u{26F0}\uFE0F' },
-  { name: 'Cerulean City', pokemon: [54, 79, 118, 120, 116], color: '#0288D1', icon: '\u{1F30A}' },
-  { name: 'Vermilion Port', pokemon: [100, 81, 56, 66, 72], color: '#E65100', icon: '\u{26F5}' },
-  { name: 'Lavender Town', pokemon: [92, 104, 52, 37, 96], color: '#7B1FA2', icon: '\u{1F47B}' },
-  { name: 'Safari Zone', pokemon: [111, 115, 123, 127, 128], color: '#827717', icon: '\u{1F335}' },
-  { name: 'Power Plant', pokemon: [125, 126, 132, 137, 143], color: '#F9A825', icon: '\u{26A1}' }
+  { name: 'Pallet Town', color: '#4CAF50', icon: '\u{1F3E0}', levels: [
+    [1, 4, 7, 133, 25],
+    [29, 32, 58, 77, 147]
+  ]},
+  { name: 'Viridian Forest', color: '#2E7D32', icon: '\u{1F332}', levels: [
+    [10, 13, 16, 19, 43],
+    [46, 48, 69, 102, 114]
+  ]},
+  { name: 'Mt. Moon', color: '#5C6BC0', icon: '\u{26F0}\uFE0F', levels: [
+    [35, 39, 41, 74, 95],
+    [23, 27, 50, 63, 90]
+  ]},
+  { name: 'Cerulean City', color: '#0288D1', icon: '\u{1F30A}', levels: [
+    [54, 79, 118, 120, 116],
+    [60, 86, 98, 129, 138]
+  ]},
+  { name: 'Vermilion Port', color: '#E65100', icon: '\u{26F5}', levels: [
+    [100, 81, 56, 66, 72],
+    [21, 84, 88, 109, 83]
+  ]},
+  { name: 'Lavender Town', color: '#7B1FA2', icon: '\u{1F47B}', levels: [
+    [92, 104, 52, 37, 96],
+    [106, 107, 108, 122, 124]
+  ]},
+  { name: 'Safari Zone', color: '#827717', icon: '\u{1F335}', levels: [
+    [111, 115, 123, 127, 128],
+    [113, 131, 140, 142, 214]
+  ]},
+  { name: 'Power Plant', color: '#F9A825', icon: '\u{26A1}', levels: [
+    [125, 126, 132, 137, 143],
+    [144, 145, 146, 150, 151]
+  ]},
+  { name: 'Celadon City', color: '#E91E63', icon: '\u{1F338}', levels: [
+    [152, 155, 158, 175, 179]
+  ]},
+  { name: 'Fuchsia City', color: '#9C27B0', icon: '\u{1F3EF}', levels: [
+    [167, 198, 228, 215, 207]
+  ]},
+  { name: 'Cinnabar Island', color: '#D84315', icon: '\u{1F30B}', levels: [
+    [218, 216, 246, 231, 227]
+  ]},
+  { name: 'Seafoam Islands', color: '#00ACC1', icon: '\u{2744}\uFE0F', levels: [
+    [170, 183, 194, 220, 222]
+  ]},
+  { name: 'Indigo Plateau', color: '#283593', icon: '\u{1F3C6}', levels: [
+    [177, 187, 204, 209, 223]
+  ]},
+  { name: 'Llanfoist School', color: '#43A047', icon: '\u{1F3EB}', levels: [
+    [694, 870, 710, 551, 718],
+    [669, 676, 701]
+  ]}
 ];
 
 const POKEDEX = {
@@ -103,7 +146,158 @@ const POKEDEX = {
   126: { name: 'Magmar',       evolvesTo: null },
   132: { name: 'Ditto',        evolvesTo: null },
   137: { name: 'Porygon',      evolvesTo: null },
-  143: { name: 'Snorlax',      evolvesTo: null }
+  143: { name: 'Snorlax',      evolvesTo: null },
+  // === LEVEL 2 POKEMON ===
+  // Pallet Town Lv2
+  29:  { name: 'Nidoran\u2640',evolvesTo: 30 },
+  30:  { name: 'Nidorina',     evolvesTo: 31 },
+  31:  { name: 'Nidoqueen',    evolvesTo: null },
+  32:  { name: 'Nidoran\u2642',evolvesTo: 33 },
+  33:  { name: 'Nidorino',     evolvesTo: 34 },
+  34:  { name: 'Nidoking',     evolvesTo: null },
+  58:  { name: 'Growlithe',    evolvesTo: 59 },
+  59:  { name: 'Arcanine',     evolvesTo: null },
+  77:  { name: 'Ponyta',       evolvesTo: 78 },
+  78:  { name: 'Rapidash',     evolvesTo: null },
+  147: { name: 'Dratini',      evolvesTo: 148 },
+  148: { name: 'Dragonair',    evolvesTo: 149 },
+  149: { name: 'Dragonite',    evolvesTo: null },
+  // Viridian Forest Lv2
+  46:  { name: 'Paras',        evolvesTo: 47 },
+  47:  { name: 'Parasect',     evolvesTo: null },
+  48:  { name: 'Venonat',      evolvesTo: 49 },
+  49:  { name: 'Venomoth',     evolvesTo: null },
+  69:  { name: 'Bellsprout',   evolvesTo: 70 },
+  70:  { name: 'Weepinbell',   evolvesTo: 71 },
+  71:  { name: 'Victreebel',   evolvesTo: null },
+  102: { name: 'Exeggcute',    evolvesTo: 103 },
+  103: { name: 'Exeggutor',    evolvesTo: null },
+  114: { name: 'Tangela',      evolvesTo: null },
+  // Mt. Moon Lv2
+  23:  { name: 'Ekans',        evolvesTo: 24 },
+  24:  { name: 'Arbok',        evolvesTo: null },
+  27:  { name: 'Sandshrew',    evolvesTo: 28 },
+  28:  { name: 'Sandslash',    evolvesTo: null },
+  50:  { name: 'Diglett',      evolvesTo: 51 },
+  51:  { name: 'Dugtrio',      evolvesTo: null },
+  63:  { name: 'Abra',         evolvesTo: 64 },
+  64:  { name: 'Kadabra',      evolvesTo: 65 },
+  65:  { name: 'Alakazam',     evolvesTo: null },
+  90:  { name: 'Shellder',     evolvesTo: 91 },
+  91:  { name: 'Cloyster',     evolvesTo: null },
+  // Cerulean City Lv2
+  60:  { name: 'Poliwag',      evolvesTo: 61 },
+  61:  { name: 'Poliwhirl',    evolvesTo: 62 },
+  62:  { name: 'Poliwrath',    evolvesTo: null },
+  86:  { name: 'Seel',         evolvesTo: 87 },
+  87:  { name: 'Dewgong',      evolvesTo: null },
+  98:  { name: 'Krabby',       evolvesTo: 99 },
+  99:  { name: 'Kingler',      evolvesTo: null },
+  129: { name: 'Magikarp',     evolvesTo: 130 },
+  130: { name: 'Gyarados',     evolvesTo: null },
+  138: { name: 'Omanyte',      evolvesTo: 139 },
+  139: { name: 'Omastar',      evolvesTo: null },
+  // Vermilion Port Lv2
+  21:  { name: 'Spearow',      evolvesTo: 22 },
+  22:  { name: 'Fearow',       evolvesTo: null },
+  83:  { name: 'Farfetch\'d',  evolvesTo: null },
+  84:  { name: 'Doduo',        evolvesTo: 85 },
+  85:  { name: 'Dodrio',       evolvesTo: null },
+  88:  { name: 'Grimer',       evolvesTo: 89 },
+  89:  { name: 'Muk',          evolvesTo: null },
+  109: { name: 'Koffing',      evolvesTo: 110 },
+  110: { name: 'Weezing',      evolvesTo: null },
+  // Lavender Town Lv2
+  106: { name: 'Hitmonlee',    evolvesTo: null },
+  107: { name: 'Hitmonchan',   evolvesTo: null },
+  108: { name: 'Lickitung',    evolvesTo: null },
+  122: { name: 'Mr. Mime',     evolvesTo: null },
+  124: { name: 'Jynx',         evolvesTo: null },
+  // Safari Zone Lv2
+  113: { name: 'Chansey',      evolvesTo: null },
+  131: { name: 'Lapras',       evolvesTo: null },
+  140: { name: 'Kabuto',       evolvesTo: 141 },
+  141: { name: 'Kabutops',     evolvesTo: null },
+  142: { name: 'Aerodactyl',   evolvesTo: null },
+  214: { name: 'Heracross',    evolvesTo: null },
+  // Power Plant Lv2
+  144: { name: 'Articuno',     evolvesTo: null },
+  145: { name: 'Zapdos',       evolvesTo: null },
+  146: { name: 'Moltres',      evolvesTo: null },
+  150: { name: 'Mewtwo',       evolvesTo: null },
+  151: { name: 'Mew',          evolvesTo: null },
+  // === NEW AREAS ===
+  // Celadon City
+  152: { name: 'Chikorita',    evolvesTo: 153 },
+  153: { name: 'Bayleef',      evolvesTo: 154 },
+  154: { name: 'Meganium',     evolvesTo: null },
+  155: { name: 'Cyndaquil',    evolvesTo: 156 },
+  156: { name: 'Quilava',      evolvesTo: 157 },
+  157: { name: 'Typhlosion',   evolvesTo: null },
+  158: { name: 'Totodile',     evolvesTo: 159 },
+  159: { name: 'Croconaw',     evolvesTo: 160 },
+  160: { name: 'Feraligatr',   evolvesTo: null },
+  175: { name: 'Togepi',       evolvesTo: 176 },
+  176: { name: 'Togetic',      evolvesTo: null },
+  179: { name: 'Mareep',       evolvesTo: 180 },
+  180: { name: 'Flaaffy',      evolvesTo: 181 },
+  181: { name: 'Ampharos',     evolvesTo: null },
+  // Fuchsia City
+  167: { name: 'Spinarak',     evolvesTo: 168 },
+  168: { name: 'Ariados',      evolvesTo: null },
+  198: { name: 'Murkrow',      evolvesTo: null },
+  207: { name: 'Gligar',       evolvesTo: null },
+  215: { name: 'Sneasel',      evolvesTo: null },
+  228: { name: 'Houndour',     evolvesTo: 229 },
+  229: { name: 'Houndoom',     evolvesTo: null },
+  // Cinnabar Island
+  216: { name: 'Teddiursa',    evolvesTo: 217 },
+  217: { name: 'Ursaring',     evolvesTo: null },
+  218: { name: 'Slugma',       evolvesTo: 219 },
+  219: { name: 'Magcargo',     evolvesTo: null },
+  227: { name: 'Skarmory',     evolvesTo: null },
+  231: { name: 'Phanpy',       evolvesTo: 232 },
+  232: { name: 'Donphan',      evolvesTo: null },
+  246: { name: 'Larvitar',     evolvesTo: 247 },
+  247: { name: 'Pupitar',      evolvesTo: 248 },
+  248: { name: 'Tyranitar',    evolvesTo: null },
+  // Seafoam Islands
+  170: { name: 'Chinchou',     evolvesTo: 171 },
+  171: { name: 'Lanturn',      evolvesTo: null },
+  183: { name: 'Marill',       evolvesTo: 184 },
+  184: { name: 'Azumarill',    evolvesTo: null },
+  194: { name: 'Wooper',       evolvesTo: 195 },
+  195: { name: 'Quagsire',     evolvesTo: null },
+  220: { name: 'Swinub',       evolvesTo: 221 },
+  221: { name: 'Piloswine',    evolvesTo: null },
+  222: { name: 'Corsola',      evolvesTo: null },
+  // Indigo Plateau
+  177: { name: 'Natu',         evolvesTo: 178 },
+  178: { name: 'Xatu',         evolvesTo: null },
+  187: { name: 'Hoppip',       evolvesTo: 188 },
+  188: { name: 'Skiploom',     evolvesTo: 189 },
+  189: { name: 'Jumpluff',     evolvesTo: null },
+  204: { name: 'Pineco',       evolvesTo: 205 },
+  205: { name: 'Forretress',   evolvesTo: null },
+  209: { name: 'Snubbull',     evolvesTo: 210 },
+  210: { name: 'Granbull',     evolvesTo: null },
+  223: { name: 'Remoraid',     evolvesTo: 224 },
+  224: { name: 'Octillery',    evolvesTo: null },
+  // Llanfoist School
+  694: { name: 'Helioptile',   evolvesTo: 695 },
+  695: { name: 'Heliolisk',    evolvesTo: null },
+  870: { name: 'Falinks',      evolvesTo: null },
+  710: { name: 'Pumpkaboo',    evolvesTo: 711 },
+  711: { name: 'Gourgeist',    evolvesTo: null },
+  551: { name: 'Sandile',      evolvesTo: 552 },
+  552: { name: 'Krokorok',     evolvesTo: 553 },
+  553: { name: 'Krookodile',   evolvesTo: null },
+  718: { name: 'Zygarde',      evolvesTo: null },
+  669: { name: 'Flabebe',      evolvesTo: 670 },
+  670: { name: 'Floette',      evolvesTo: 671 },
+  671: { name: 'Florges',      evolvesTo: null },
+  676: { name: 'Furfrou',      evolvesTo: null },
+  701: { name: 'Hawlucha',     evolvesTo: null }
 };
 
 function spriteUrl(id) {
@@ -113,6 +307,7 @@ function spriteUrl(id) {
 // ===== STATE =====
 let gameState = { caught: [], pokemon: {} };
 let currentAreaIndex = null;
+let currentAreaLevel = 0;
 let encounterPokemonId = null;
 let interactPokemonId = null;
 let interactBusy = false;
@@ -189,18 +384,34 @@ function isCaught(id) {
   return gameState.caught.includes(id);
 }
 
-function isAreaUnlocked(idx) {
-  if (idx === 0) return true;
-  const prevArea = AREAS[idx - 1];
-  return prevArea.pokemon.every(id => isCaught(id));
+// Get all Pokemon IDs across all levels of an area
+function getAllAreaPokemon(idx) {
+  return AREAS[idx].levels.flat();
 }
 
-function getUncaughtInArea(idx) {
-  return AREAS[idx].pokemon.filter(id => !isCaught(id));
+// Get Pokemon for a specific level of an area
+function getAreaLevelPokemon(idx, level) {
+  return AREAS[idx].levels[level] || [];
+}
+
+function isAreaUnlocked(idx) {
+  if (idx === 0) return true;
+  // Previous area's level 1 must be complete
+  return getAreaLevelPokemon(idx - 1, 0).every(id => isCaught(id));
+}
+
+function isLevelUnlocked(areaIdx, level) {
+  if (level === 0) return isAreaUnlocked(areaIdx);
+  // Previous level in same area must be complete
+  return getAreaLevelPokemon(areaIdx, level - 1).every(id => isCaught(id));
+}
+
+function getUncaughtInLevel(idx, level) {
+  return getAreaLevelPokemon(idx, level).filter(id => !isCaught(id));
 }
 
 function getCaughtInArea(idx) {
-  return AREAS[idx].pokemon.filter(id => isCaught(id));
+  return getAllAreaPokemon(idx).filter(id => isCaught(id));
 }
 
 function catchPokemon(id) {
@@ -212,7 +423,9 @@ function catchPokemon(id) {
 
 function getAreaForPokemon(id) {
   for (const area of AREAS) {
-    if (area.pokemon.includes(id)) return area.name;
+    for (const level of area.levels) {
+      if (level.includes(id)) return area.name;
+    }
   }
   return '';
 }
@@ -255,16 +468,19 @@ function renderMap() {
 
   AREAS.forEach((area, idx) => {
     const unlocked = isAreaUnlocked(idx);
-    const caught = getCaughtInArea(idx).length;
-    const total = area.pokemon.length;
+    const allPokemon = getAllAreaPokemon(idx);
+    const caught = allPokemon.filter(id => isCaught(id)).length;
+    const total = allPokemon.length;
     const allCaught = caught === total;
 
     const card = document.createElement('div');
     card.className = 'area-card' + (unlocked ? '' : ' locked');
+    const levelCount = area.levels.length;
+    const levelText = levelCount > 1 ? ` (${levelCount} levels)` : '';
     card.innerHTML = `
       <div class="area-icon" style="background:${area.color}20">${area.icon}</div>
       <div class="area-info">
-        <div class="area-name">${area.name}</div>
+        <div class="area-name">${area.name}${levelText}</div>
         <div class="area-progress-text">${caught}/${total} caught</div>
         <div class="area-progress-bar">
           <div class="area-progress-fill" style="width:${(caught/total)*100}%;background:${area.color}"></div>
@@ -274,13 +490,16 @@ function renderMap() {
     `;
 
     if (unlocked) {
-      card.addEventListener('click', () => showScreen('area', idx));
+      card.addEventListener('click', () => {
+        currentAreaLevel = 0;
+        showScreen('area', idx);
+      });
     }
 
     container.appendChild(card);
   });
 
-  const totalPokemon = AREAS.reduce((sum, a) => sum + a.pokemon.length, 0);
+  const totalPokemon = AREAS.reduce((sum, a) => getAllAreaPokemon(AREAS.indexOf(a)).length + sum, 0);
   if (gameState.caught.length === totalPokemon) {
     const banner = document.createElement('div');
     banner.className = 'area-complete-msg';
@@ -293,17 +512,33 @@ function renderMap() {
 function renderArea(areaIndex) {
   if (areaIndex !== undefined) currentAreaIndex = areaIndex;
   const area = AREAS[currentAreaIndex];
+  const totalLevels = area.levels.length;
+  const levelPokemon = getAreaLevelPokemon(currentAreaIndex, currentAreaLevel);
 
-  document.getElementById('area-title').textContent = area.name;
+  // Title with level indicator
+  const levelLabel = totalLevels > 1 ? ` - Lv.${currentAreaLevel + 1}` : '';
+  document.getElementById('area-title').textContent = area.name + levelLabel;
 
   // Set header color
   const header = document.querySelector('[data-screen="area"] .screen-header');
   header.style.background = area.color;
 
+  // Level navigation arrows
+  const prevBtn = document.getElementById('area-prev-level');
+  const nextBtn = document.getElementById('area-next-level');
+  if (totalLevels > 1) {
+    prevBtn.style.display = currentAreaLevel > 0 ? '' : 'none';
+    const nextUnlocked = currentAreaLevel + 1 < totalLevels && isLevelUnlocked(currentAreaIndex, currentAreaLevel + 1);
+    nextBtn.style.display = nextUnlocked ? '' : 'none';
+  } else {
+    prevBtn.style.display = 'none';
+    nextBtn.style.display = 'none';
+  }
+
   const grid = document.getElementById('area-grid');
   grid.innerHTML = '';
 
-  area.pokemon.forEach(id => {
+  levelPokemon.forEach(id => {
     const caught = isCaught(id);
     const card = document.createElement('div');
     card.className = 'pokemon-card ' + (caught ? 'caught' : 'uncaught');
@@ -314,7 +549,7 @@ function renderArea(areaIndex) {
     grid.appendChild(card);
   });
 
-  const uncaught = getUncaughtInArea(currentAreaIndex);
+  const uncaught = getUncaughtInLevel(currentAreaIndex, currentAreaLevel);
   const searchBtn = document.getElementById('search-btn');
   const completeMsg = document.getElementById('area-complete-msg');
 
@@ -322,14 +557,19 @@ function renderArea(areaIndex) {
     searchBtn.style.display = 'none';
     completeMsg.style.display = 'block';
 
-    // Find next locked area
-    const nextIdx = currentAreaIndex + 1;
-    if (nextIdx < AREAS.length && isAreaUnlocked(nextIdx)) {
-      completeMsg.innerHTML = `\u{1F389} All Pokemon caught here! <br><strong>${AREAS[nextIdx].name}</strong> is now unlocked!`;
-    } else if (nextIdx >= AREAS.length) {
-      completeMsg.innerHTML = '\u{1F31F} All Pokemon in this area caught! Amazing!';
+    // Check if next level unlocked
+    if (currentAreaLevel + 1 < totalLevels) {
+      completeMsg.innerHTML = `\u{1F389} Level complete! Tap \u25B6 to go to Level ${currentAreaLevel + 2}!`;
     } else {
-      completeMsg.innerHTML = '\u{2B50} All Pokemon caught here! Great job!';
+      // Check if next area unlocked
+      const nextIdx = currentAreaIndex + 1;
+      if (nextIdx < AREAS.length && isAreaUnlocked(nextIdx)) {
+        completeMsg.innerHTML = `\u{1F389} All Pokemon caught here! <br><strong>${AREAS[nextIdx].name}</strong> is now unlocked!`;
+      } else if (nextIdx >= AREAS.length) {
+        completeMsg.innerHTML = '\u{1F31F} All Pokemon in this area caught! Amazing!';
+      } else {
+        completeMsg.innerHTML = '\u{2B50} All Pokemon caught here! Great job!';
+      }
     }
   } else {
     searchBtn.style.display = 'block';
@@ -340,8 +580,23 @@ function renderArea(areaIndex) {
 
 document.getElementById('area-back-btn').addEventListener('click', () => showScreen('map'));
 
+document.getElementById('area-prev-level').addEventListener('click', () => {
+  if (currentAreaLevel > 0) {
+    currentAreaLevel--;
+    renderArea();
+  }
+});
+
+document.getElementById('area-next-level').addEventListener('click', () => {
+  const area = AREAS[currentAreaIndex];
+  if (currentAreaLevel + 1 < area.levels.length && isLevelUnlocked(currentAreaIndex, currentAreaLevel + 1)) {
+    currentAreaLevel++;
+    renderArea();
+  }
+});
+
 document.getElementById('search-btn').addEventListener('click', () => {
-  const uncaught = getUncaughtInArea(currentAreaIndex);
+  const uncaught = getUncaughtInLevel(currentAreaIndex, currentAreaLevel);
   if (uncaught.length > 0) {
     const randomId = uncaught[Math.floor(Math.random() * uncaught.length)];
     showScreen('encounter', randomId);
@@ -709,7 +964,7 @@ function getOwnedForms(baseId) {
 }
 
 function renderPokedex() {
-  const baseIds = AREAS.flatMap(a => a.pokemon);
+  const baseIds = AREAS.flatMap((a, i) => getAllAreaPokemon(i));
   const grid = document.getElementById('pokedex-grid');
   grid.innerHTML = '';
 
@@ -763,7 +1018,7 @@ function renderInteract(pokemonId) {
   const evolved = !canEvolve(interactPokemonId);
 
   // Set background color based on area
-  const area = AREAS.find(a => a.pokemon.includes(interactPokemonId));
+  const area = AREAS.find(a => a.levels.some(lvl => lvl.includes(interactPokemonId)));
   const interactEl = document.querySelector('[data-screen="interact"]');
   if (area) {
     interactEl.style.background = `linear-gradient(180deg, ${area.color}99, ${area.color}cc, ${area.color})`;
@@ -994,7 +1249,13 @@ const STOCK_SCENES = [
   { name: 'Vermilion Port', areaIndex: 4, draw: drawVermilionPort },
   { name: 'Lavender Town', areaIndex: 5, draw: drawLavenderTown },
   { name: 'Safari Zone', areaIndex: 6, draw: drawSafariZone },
-  { name: 'Power Plant', areaIndex: 7, draw: drawPowerPlant }
+  { name: 'Power Plant', areaIndex: 7, draw: drawPowerPlant },
+  { name: 'Celadon City', areaIndex: 8, draw: drawCeladonCity },
+  { name: 'Fuchsia City', areaIndex: 9, draw: drawFuchsiaCity },
+  { name: 'Cinnabar Island', areaIndex: 10, draw: drawCinnabarIsland },
+  { name: 'Seafoam Islands', areaIndex: 11, draw: drawSeafoamIslands },
+  { name: 'Indigo Plateau', areaIndex: 12, draw: drawIndigoPlateau },
+  { name: 'Llanfoist School', areaIndex: 13, draw: drawLlanfoistSchool }
 ];
 
 function drawPalletTown(ctx, w, h) {
@@ -1397,6 +1658,259 @@ function drawPowerPlant(ctx, w, h) {
   ctx.lineTo(w * 0.05, h * 0.6); ctx.stroke();
 }
 
+function drawCeladonCity(ctx, w, h) {
+  // Pink/spring sky
+  const sky = ctx.createLinearGradient(0, 0, 0, h * 0.5);
+  sky.addColorStop(0, '#F8BBD0');
+  sky.addColorStop(1, '#FCE4EC');
+  ctx.fillStyle = sky;
+  ctx.fillRect(0, 0, w, h * 0.5);
+  // Cherry blossom trees
+  const treePositions = [w * 0.1, w * 0.35, w * 0.6, w * 0.85];
+  treePositions.forEach(tx => {
+    ctx.fillStyle = '#5D4037';
+    ctx.fillRect(tx - 4, h * 0.25, 8, h * 0.3);
+    ctx.fillStyle = '#F48FB1';
+    ctx.beginPath(); ctx.arc(tx, h * 0.22, 30, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#F06292';
+    ctx.beginPath(); ctx.arc(tx - 10, h * 0.18, 20, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(tx + 12, h * 0.2, 18, 0, Math.PI * 2); ctx.fill();
+  });
+  // Petals falling
+  ctx.fillStyle = '#F8BBD0';
+  for (let i = 0; i < 20; i++) {
+    ctx.beginPath();
+    ctx.ellipse(Math.random() * w, Math.random() * h * 0.6, 3, 2, Math.random() * Math.PI, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  // Green grass
+  ctx.fillStyle = '#66BB6A';
+  ctx.fillRect(0, h * 0.5, w, h * 0.5);
+  // Department store
+  ctx.fillStyle = '#E8EAF6';
+  ctx.fillRect(w * 0.3, h * 0.3, w * 0.4, h * 0.2);
+  ctx.fillStyle = '#E91E63';
+  ctx.fillRect(w * 0.3, h * 0.28, w * 0.4, 8);
+  ctx.fillStyle = '#90CAF9';
+  for (let i = 0; i < 3; i++) ctx.fillRect(w * 0.34 + i * w * 0.12, h * 0.34, 14, 12);
+  // Path
+  ctx.fillStyle = '#BCAAA4';
+  ctx.fillRect(w * 0.4, h * 0.5, w * 0.2, h * 0.5);
+}
+
+function drawFuchsiaCity(ctx, w, h) {
+  // Dusk sky
+  const sky = ctx.createLinearGradient(0, 0, 0, h * 0.5);
+  sky.addColorStop(0, '#4A148C');
+  sky.addColorStop(1, '#7B1FA2');
+  ctx.fillStyle = sky;
+  ctx.fillRect(0, 0, w, h * 0.5);
+  // Stars
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
+  for (let i = 0; i < 25; i++) {
+    ctx.beginPath();
+    ctx.arc(Math.random() * w, Math.random() * h * 0.4, Math.random() + 0.5, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  // Dark ground
+  ctx.fillStyle = '#1B0033';
+  ctx.fillRect(0, h * 0.5, w, h * 0.5);
+  // Pagoda
+  ctx.fillStyle = '#3E2723';
+  ctx.fillRect(w * 0.3, h * 0.2, w * 0.4, h * 0.35);
+  for (let i = 0; i < 3; i++) {
+    const ty = h * 0.2 + i * h * 0.1;
+    ctx.fillStyle = '#9C27B0';
+    ctx.beginPath();
+    ctx.moveTo(w * 0.25, ty + h * 0.1);
+    ctx.lineTo(w * 0.5, ty);
+    ctx.lineTo(w * 0.75, ty + h * 0.1);
+    ctx.fill();
+  }
+  // Cobwebs
+  ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(w * 0.05, h * 0.5); ctx.lineTo(w * 0.2, h * 0.35); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(w * 0.05, h * 0.5); ctx.lineTo(w * 0.15, h * 0.5); ctx.stroke();
+}
+
+function drawCinnabarIsland(ctx, w, h) {
+  // Red/orange sky
+  const sky = ctx.createLinearGradient(0, 0, 0, h * 0.5);
+  sky.addColorStop(0, '#BF360C');
+  sky.addColorStop(1, '#FF6F00');
+  ctx.fillStyle = sky;
+  ctx.fillRect(0, 0, w, h * 0.5);
+  // Volcano
+  ctx.fillStyle = '#4E342E';
+  ctx.beginPath();
+  ctx.moveTo(w * 0.2, h * 0.6); ctx.lineTo(w * 0.5, h * 0.1); ctx.lineTo(w * 0.8, h * 0.6);
+  ctx.fill();
+  // Lava glow
+  ctx.fillStyle = '#FF5722';
+  ctx.beginPath(); ctx.arc(w * 0.5, h * 0.12, 15, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = 'rgba(255,87,34,0.3)';
+  ctx.beginPath(); ctx.arc(w * 0.5, h * 0.12, 30, 0, Math.PI * 2); ctx.fill();
+  // Lava streams
+  ctx.strokeStyle = '#FF5722';
+  ctx.lineWidth = 4;
+  ctx.beginPath(); ctx.moveTo(w * 0.48, h * 0.15); ctx.lineTo(w * 0.4, h * 0.45); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(w * 0.52, h * 0.15); ctx.lineTo(w * 0.6, h * 0.5); ctx.stroke();
+  // Water around island
+  ctx.fillStyle = '#01579B';
+  ctx.fillRect(0, h * 0.6, w, h * 0.4);
+  // Rocky shore
+  ctx.fillStyle = '#5D4037';
+  for (let x = 0; x < w; x += 20) {
+    ctx.beginPath(); ctx.arc(x, h * 0.6, 12, Math.PI, 0); ctx.fill();
+  }
+}
+
+function drawSeafoamIslands(ctx, w, h) {
+  // Icy blue sky
+  const sky = ctx.createLinearGradient(0, 0, 0, h * 0.4);
+  sky.addColorStop(0, '#B3E5FC');
+  sky.addColorStop(1, '#E1F5FE');
+  ctx.fillStyle = sky;
+  ctx.fillRect(0, 0, w, h * 0.4);
+  // Snowflakes
+  ctx.fillStyle = 'rgba(255,255,255,0.7)';
+  for (let i = 0; i < 30; i++) {
+    ctx.beginPath();
+    ctx.arc(Math.random() * w, Math.random() * h * 0.6, Math.random() * 2 + 1, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  // Icy water
+  const water = ctx.createLinearGradient(0, h * 0.4, 0, h);
+  water.addColorStop(0, '#4FC3F7');
+  water.addColorStop(1, '#0288D1');
+  ctx.fillStyle = water;
+  ctx.fillRect(0, h * 0.4, w, h * 0.6);
+  // Ice chunks
+  ctx.fillStyle = '#E0F7FA';
+  [[w * 0.1, h * 0.5], [w * 0.5, h * 0.45], [w * 0.8, h * 0.55]].forEach(([ix, iy]) => {
+    ctx.beginPath();
+    ctx.moveTo(ix - 25, iy + 10); ctx.lineTo(ix - 10, iy - 15);
+    ctx.lineTo(ix + 15, iy - 10); ctx.lineTo(ix + 25, iy + 10);
+    ctx.fill();
+  });
+  // Ice cave entrance
+  ctx.fillStyle = '#B2EBF2';
+  ctx.beginPath();
+  ctx.moveTo(w * 0.25, h * 0.4); ctx.lineTo(w * 0.5, h * 0.15);
+  ctx.lineTo(w * 0.75, h * 0.4);
+  ctx.fill();
+  ctx.fillStyle = '#006064';
+  ctx.beginPath();
+  ctx.ellipse(w * 0.5, h * 0.38, 25, 30, 0, Math.PI, 0);
+  ctx.fill();
+}
+
+function drawIndigoPlateau(ctx, w, h) {
+  // Dramatic dark blue sky
+  const sky = ctx.createLinearGradient(0, 0, 0, h);
+  sky.addColorStop(0, '#0D1B2A');
+  sky.addColorStop(0.5, '#1B2838');
+  sky.addColorStop(1, '#1A237E');
+  ctx.fillStyle = sky;
+  ctx.fillRect(0, 0, w, h);
+  // Stars
+  ctx.fillStyle = '#FFF';
+  for (let i = 0; i < 40; i++) {
+    ctx.beginPath();
+    ctx.arc(Math.random() * w, Math.random() * h * 0.5, Math.random() * 1.5 + 0.5, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  // Grand building
+  ctx.fillStyle = '#283593';
+  ctx.fillRect(w * 0.15, h * 0.3, w * 0.7, h * 0.4);
+  // Columns
+  ctx.fillStyle = '#C5CAE9';
+  for (let i = 0; i < 6; i++) {
+    ctx.fillRect(w * 0.18 + i * w * 0.12, h * 0.3, 10, h * 0.4);
+  }
+  // Roof/pediment
+  ctx.fillStyle = '#1A237E';
+  ctx.beginPath();
+  ctx.moveTo(w * 0.1, h * 0.3); ctx.lineTo(w * 0.5, h * 0.12); ctx.lineTo(w * 0.9, h * 0.3);
+  ctx.fill();
+  // Golden emblem
+  ctx.fillStyle = '#FFD54F';
+  ctx.beginPath(); ctx.arc(w * 0.5, h * 0.22, 12, 0, Math.PI * 2); ctx.fill();
+  // Steps
+  ctx.fillStyle = '#3949AB';
+  for (let i = 0; i < 4; i++) {
+    ctx.fillRect(w * 0.2 + i * -5, h * 0.7 + i * 8, w * 0.6 + i * 10, 8);
+  }
+  // Ground
+  ctx.fillStyle = '#1A237E';
+  ctx.fillRect(0, h * 0.7, w, h * 0.3);
+}
+
+function drawLlanfoistSchool(ctx, w, h) {
+  // Bright blue sky
+  const sky = ctx.createLinearGradient(0, 0, 0, h * 0.5);
+  sky.addColorStop(0, '#64B5F6');
+  sky.addColorStop(1, '#BBDEFB');
+  ctx.fillStyle = sky;
+  ctx.fillRect(0, 0, w, h * 0.5);
+  // Clouds
+  ctx.fillStyle = 'rgba(255,255,255,0.8)';
+  [[w * 0.15, h * 0.1], [w * 0.7, h * 0.12]].forEach(([cx, cy]) => {
+    ctx.beginPath(); ctx.arc(cx, cy, 18, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(cx + 18, cy - 4, 14, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(cx - 12, cy + 2, 12, 0, Math.PI * 2); ctx.fill();
+  });
+  // Green hills (Welsh countryside)
+  ctx.fillStyle = '#66BB6A';
+  ctx.fillRect(0, h * 0.45, w, h * 0.55);
+  ctx.fillStyle = '#4CAF50';
+  ctx.beginPath();
+  ctx.moveTo(0, h * 0.5);
+  ctx.quadraticCurveTo(w * 0.25, h * 0.38, w * 0.5, h * 0.48);
+  ctx.quadraticCurveTo(w * 0.75, h * 0.4, w, h * 0.47);
+  ctx.lineTo(w, h * 0.55); ctx.lineTo(0, h * 0.55);
+  ctx.fill();
+  // School building
+  ctx.fillStyle = '#FFCC80';
+  ctx.fillRect(w * 0.2, h * 0.25, w * 0.6, h * 0.3);
+  // Roof
+  ctx.fillStyle = '#E65100';
+  ctx.beginPath();
+  ctx.moveTo(w * 0.15, h * 0.25); ctx.lineTo(w * 0.5, h * 0.1); ctx.lineTo(w * 0.85, h * 0.25);
+  ctx.fill();
+  // Windows
+  ctx.fillStyle = '#90CAF9';
+  for (let i = 0; i < 4; i++) {
+    ctx.fillRect(w * 0.25 + i * w * 0.13, h * 0.3, 14, 14);
+  }
+  // Door
+  ctx.fillStyle = '#43A047';
+  ctx.fillRect(w * 0.45, h * 0.4, w * 0.1, h * 0.15);
+  // Flag
+  ctx.fillStyle = '#333';
+  ctx.fillRect(w * 0.5, h * 0.05, 3, h * 0.06);
+  ctx.fillStyle = '#C62828';
+  ctx.beginPath();
+  ctx.moveTo(w * 0.503, h * 0.05);
+  ctx.lineTo(w * 0.56, h * 0.065);
+  ctx.lineTo(w * 0.503, h * 0.08);
+  ctx.fill();
+  // Playground
+  ctx.fillStyle = '#8D6E63';
+  ctx.fillRect(w * 0.1, h * 0.55, w * 0.8, h * 0.08);
+  // Flowers
+  const flowerColors = ['#E91E63', '#FF9800', '#FFEB3B', '#9C27B0', '#2196F3'];
+  for (let i = 0; i < 12; i++) {
+    const fx = w * 0.05 + Math.random() * w * 0.9;
+    const fy = h * 0.7 + Math.random() * h * 0.2;
+    ctx.fillStyle = flowerColors[Math.floor(Math.random() * flowerColors.length)];
+    ctx.beginPath(); ctx.arc(fx, fy, 4, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#388E3C';
+    ctx.fillRect(fx - 1, fy, 2, 8);
+  }
+}
+
 function generateSceneDataURL(drawFn) {
   const canvas = document.createElement('canvas');
   canvas.width = 400;
@@ -1412,7 +1926,7 @@ function renderSticker() {
   bgStrip.querySelectorAll('.scene-bg-option').forEach(el => el.remove());
 
   STOCK_SCENES.forEach((scene, idx) => {
-    const areaComplete = AREAS[scene.areaIndex].pokemon.every(id => isCaught(id));
+    const areaComplete = getAllAreaPokemon(scene.areaIndex).every(id => isCaught(id));
     if (!areaComplete) return; // Only show scenes for completed areas
 
     const option = document.createElement('div');
@@ -1692,7 +2206,7 @@ function triggerDownload(canvas) {
 
 // ===== SPRITE PRELOADING =====
 function preloadSprites() {
-  const allIds = AREAS.flatMap(a => a.pokemon);
+  const allIds = AREAS.flatMap((a, i) => getAllAreaPokemon(i));
   allIds.forEach(id => {
     const img = new Image();
     img.crossOrigin = 'anonymous';
