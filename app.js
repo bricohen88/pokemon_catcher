@@ -20,7 +20,7 @@ const AREAS = [
   { name: 'Cerulean City', color: '#0288D1', icon: '\u{1F30A}', levels: [
     [54, 79, 118, 120, 116],
     [60, 86, 98, 129, 138],
-    [80, 117, 121, 130, 139]
+    [80, 117, 134, 130, 139]
   ]},
   { name: 'Vermilion Port', color: '#E65100', icon: '\u{26F5}', levels: [
     [100, 81, 56, 66, 72],
@@ -40,7 +40,7 @@ const AREAS = [
   { name: 'Power Plant', color: '#F9A825', icon: '\u{26A1}', levels: [
     [125, 126, 132, 137, 143],
     [144, 145, 146, 82, 101],
-    [65, 68, 71, 91, 110]
+    [65, 68, 135, 91, 110]
   ]},
   { name: 'Celadon City', color: '#E91E63', icon: '\u{1F338}', levels: [
     [152, 155, 158, 175, 179]
@@ -232,8 +232,6 @@ const POKEDEX = {
   144: { name: 'Articuno',     evolvesTo: null },
   145: { name: 'Zapdos',       evolvesTo: null },
   146: { name: 'Moltres',      evolvesTo: null },
-  150: { name: 'Mewtwo',       evolvesTo: null },
-  151: { name: 'Mew',          evolvesTo: null },
   // === NEW AREAS ===
   // Celadon City
   152: { name: 'Chikorita',    evolvesTo: 153 },
