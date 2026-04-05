@@ -4,35 +4,43 @@ const SPRITE_BASE = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sp
 const AREAS = [
   { name: 'Pallet Town', color: '#4CAF50', icon: '\u{1F3E0}', levels: [
     [1, 4, 7, 133, 25],
-    [29, 32, 58, 77, 147]
+    [29, 32, 58, 77, 147],
+    [3, 6, 9, 26, 136]
   ]},
   { name: 'Viridian Forest', color: '#2E7D32', icon: '\u{1F332}', levels: [
     [10, 13, 16, 19, 43],
-    [46, 48, 69, 102, 114]
+    [46, 48, 69, 102, 114],
+    [12, 15, 18, 45, 49]
   ]},
   { name: 'Mt. Moon', color: '#5C6BC0', icon: '\u{26F0}\uFE0F', levels: [
     [35, 39, 41, 74, 95],
-    [23, 27, 50, 63, 90]
+    [23, 27, 50, 63, 90],
+    [36, 40, 76, 42, 208]
   ]},
   { name: 'Cerulean City', color: '#0288D1', icon: '\u{1F30A}', levels: [
     [54, 79, 118, 120, 116],
-    [60, 86, 98, 129, 138]
+    [60, 86, 98, 129, 138],
+    [80, 117, 121, 130, 139]
   ]},
   { name: 'Vermilion Port', color: '#E65100', icon: '\u{26F5}', levels: [
     [100, 81, 56, 66, 72],
-    [21, 84, 88, 109, 83]
+    [21, 84, 88, 109, 83],
+    [22, 57, 59, 85, 89]
   ]},
   { name: 'Lavender Town', color: '#7B1FA2', icon: '\u{1F47B}', levels: [
     [92, 104, 52, 37, 96],
-    [106, 107, 108, 122, 124]
+    [106, 107, 108, 122, 124],
+    [94, 53, 105, 97, 38]
   ]},
   { name: 'Safari Zone', color: '#827717', icon: '\u{1F335}', levels: [
     [111, 115, 123, 127, 128],
-    [113, 131, 140, 142, 214]
+    [113, 131, 140, 142, 214],
+    [31, 34, 112, 141, 149]
   ]},
   { name: 'Power Plant', color: '#F9A825', icon: '\u{26A1}', levels: [
     [125, 126, 132, 137, 143],
-    [144, 145, 146, 150, 151]
+    [144, 145, 146, 82, 101],
+    [65, 68, 71, 91, 110]
   ]},
   { name: 'Celadon City', color: '#E91E63', icon: '\u{1F338}', levels: [
     [152, 155, 158, 175, 179]
@@ -51,7 +59,7 @@ const AREAS = [
   ]},
   { name: 'Llanfoist School', color: '#43A047', icon: '\u{1F3EB}', levels: [
     [694, 870, 710, 551, 718],
-    [669, 676, 701]
+    [669, 150, 151]
   ]}
 ];
 
@@ -296,8 +304,8 @@ const POKEDEX = {
   669: { name: 'Flabebe',      evolvesTo: 670 },
   670: { name: 'Floette',      evolvesTo: 671 },
   671: { name: 'Florges',      evolvesTo: null },
-  676: { name: 'Furfrou',      evolvesTo: null },
-  701: { name: 'Hawlucha',     evolvesTo: null }
+  150: { name: 'Mewtwo',       evolvesTo: null },
+  151: { name: 'Mew',          evolvesTo: null }
 };
 
 function spriteUrl(id) {
