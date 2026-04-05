@@ -396,7 +396,9 @@ function saveState() {
 }
 
 function isCaught(id) {
-  return gameState.caught.includes(id);
+  if (gameState.caught.includes(id)) return true;
+  // Also true if any caught Pokemon has evolved into this form
+  return Object.values(gameState.pokemon).some(data => data.currentForm === id);
 }
 
 // Get all Pokemon IDs across all levels of an area
@@ -484,8 +486,8 @@ function getRegionAreas(regionName) {
 }
 
 function isRegionComplete(regionName) {
-  return getRegionAreas(regionName).every(({ idx }) =>
-    getAllAreaPokemon(idx).every(id => isCaught(id))
+  return getRegionAreas(regionName).every(({ area }) =>
+    area.levels.slice(0, 2).every(level => level.every(id => isCaught(id)))
   );
 }
 
@@ -1035,24 +1037,27 @@ function renderPokedex() {
 
   const totalPokemon = baseIds.length;
 
-  // Build full list: for caught Pokemon, include all owned forms
-  const entries = [];
+  // Build full list: one entry per unique Pokedex number, caught wins over uncaught
+  const byFormId = new Map();
   baseIds.forEach(id => {
     if (isCaught(id)) {
       getOwnedForms(id).forEach(formId => {
-        entries.push({ formId, baseId: id, caught: true });
+        if (!byFormId.has(formId) || !byFormId.get(formId).caught) {
+          byFormId.set(formId, { formId, baseId: id, caught: true });
+        }
       });
-    } else {
-      entries.push({ formId: id, baseId: id, caught: false });
+    } else if (!byFormId.has(id)) {
+      byFormId.set(id, { formId: id, baseId: id, caught: false });
     }
   });
 
   // Sort by Pokedex number
-  entries.sort((a, b) => a.formId - b.formId);
+  const entries = Array.from(byFormId.values()).sort((a, b) => a.formId - b.formId);
 
   const totalInDex = entries.length;
   const ownedInDex = entries.filter(e => e.caught).length;
-  document.getElementById('pokedex-count').textContent = `${gameState.caught.length}/${totalPokemon} caught | ${ownedInDex}/${totalInDex} in Pokedex`;
+  const caughtCount = baseIds.filter(id => isCaught(id)).length;
+  document.getElementById('pokedex-count').textContent = `${caughtCount}/${totalPokemon} caught | ${ownedInDex}/${totalInDex} in Pokedex`;
 
   entries.forEach(({ formId, baseId, caught }) => {
     const name = caught ? POKEDEX[formId].name : '???';
@@ -2009,7 +2014,8 @@ function renderSticker() {
   const strip = document.getElementById('sticker-strip');
   strip.innerHTML = '';
 
-  if (gameState.caught.length === 0) {
+  const allAreaIds = AREAS.flatMap((_, i) => getAllAreaPokemon(i));
+  if (!allAreaIds.some(id => isCaught(id))) {
     strip.innerHTML = '<div class="sticker-strip-empty">Catch Pokemon to use as stickers!</div>';
     return;
   }
