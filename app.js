@@ -2,9 +2,9 @@
 const SPRITE_BASE = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
 
 const REGIONS = [
-  { name: 'Kanto' }
+  { name: 'Kanto' },
+  { name: 'Johto' }
   // Future regions can be added here, e.g.:
-  // { name: 'Johto' },
   // { name: 'Hoenn' },
   // { name: 'Kalos' }
 ];
@@ -68,6 +68,26 @@ const AREAS = [
   { region: 'Kanto', name: 'Llanfoist School', color: '#43A047', icon: '\u{1F3EB}', levels: [
     [694, 870, 710, 551, 718],
     [669, 150, 151]
+  ]},
+  // ===== JOHTO =====
+  { region: 'Johto', name: 'New Bark Town', color: '#8BC34A', icon: '\u{1F3D8}\uFE0F', levels: [
+    [161, 163, 172, 173, 174],
+    [190, 193, 203, 234, 235]
+  ]},
+  { region: 'Johto', name: 'Ilex Forest', color: '#1B5E20', icon: '\u{1F333}', levels: [
+    [165, 185, 191, 201, 206],
+    [169, 182, 200, 212, 213]
+  ]},
+  { region: 'Johto', name: 'Goldenrod City', color: '#FFA000', icon: '\u{1F3D9}\uFE0F', levels: [
+    [196, 197, 199, 202, 241],
+    [186, 233, 238, 239, 240]
+  ]},
+  { region: 'Johto', name: 'Cianwood City', color: '#00838F', icon: '\u{26F5}', levels: [
+    [211, 225, 226, 230, 236],
+    [237, 242, 243, 244, 245]
+  ]},
+  { region: 'Johto', name: 'Tin Tower', color: '#6A1B9A', icon: '\u{2728}', levels: [
+    [249, 250, 251]
   ]}
 ];
 
@@ -311,7 +331,60 @@ const POKEDEX = {
   670: { name: 'Floette',      evolvesTo: 671 },
   671: { name: 'Florges',      evolvesTo: null },
   150: { name: 'Mewtwo',       evolvesTo: null },
-  151: { name: 'Mew',          evolvesTo: null }
+  151: { name: 'Mew',          evolvesTo: null },
+  // ===== JOHTO =====
+  // New Bark Town
+  161: { name: 'Sentret',      evolvesTo: 162 },
+  162: { name: 'Furret',       evolvesTo: null },
+  163: { name: 'Hoothoot',     evolvesTo: 164 },
+  164: { name: 'Noctowl',      evolvesTo: null },
+  172: { name: 'Pichu',        evolvesTo: 25  },
+  173: { name: 'Cleffa',       evolvesTo: 35  },
+  174: { name: 'Igglybuff',    evolvesTo: 39  },
+  190: { name: 'Aipom',        evolvesTo: null },
+  193: { name: 'Yanma',        evolvesTo: null },
+  203: { name: 'Girafarig',    evolvesTo: null },
+  234: { name: 'Stantler',     evolvesTo: null },
+  235: { name: 'Smeargle',     evolvesTo: null },
+  // Ilex Forest
+  165: { name: 'Ledyba',       evolvesTo: 166 },
+  166: { name: 'Ledian',       evolvesTo: null },
+  185: { name: 'Sudowoodo',    evolvesTo: null },
+  191: { name: 'Sunkern',      evolvesTo: 192 },
+  192: { name: 'Sunflora',     evolvesTo: null },
+  201: { name: 'Unown',        evolvesTo: null },
+  206: { name: 'Dunsparce',    evolvesTo: null },
+  169: { name: 'Crobat',       evolvesTo: null },
+  182: { name: 'Bellossom',    evolvesTo: null },
+  200: { name: 'Misdreavus',   evolvesTo: null },
+  212: { name: 'Scizor',       evolvesTo: null },
+  213: { name: 'Shuckle',      evolvesTo: null },
+  // Goldenrod City
+  196: { name: 'Espeon',       evolvesTo: null },
+  197: { name: 'Umbreon',      evolvesTo: null },
+  199: { name: 'Slowking',     evolvesTo: null },
+  202: { name: 'Wobbuffet',    evolvesTo: null },
+  241: { name: 'Miltank',      evolvesTo: null },
+  186: { name: 'Politoed',     evolvesTo: null },
+  233: { name: 'Porygon2',     evolvesTo: null },
+  238: { name: 'Smoochum',     evolvesTo: 124 },
+  239: { name: 'Elekid',       evolvesTo: 125 },
+  240: { name: 'Magby',        evolvesTo: 126 },
+  // Cianwood City
+  211: { name: 'Qwilfish',     evolvesTo: null },
+  225: { name: 'Delibird',     evolvesTo: null },
+  226: { name: 'Mantine',      evolvesTo: null },
+  230: { name: 'Kingdra',      evolvesTo: null },
+  236: { name: 'Tyrogue',      evolvesTo: 237 },
+  237: { name: 'Hitmontop',    evolvesTo: null },
+  242: { name: 'Blissey',      evolvesTo: null },
+  243: { name: 'Raikou',       evolvesTo: null },
+  244: { name: 'Entei',        evolvesTo: null },
+  245: { name: 'Suicune',      evolvesTo: null },
+  // Tin Tower
+  249: { name: 'Lugia',        evolvesTo: null },
+  250: { name: 'Ho-Oh',        evolvesTo: null },
+  251: { name: 'Celebi',       evolvesTo: null }
 };
 
 function spriteUrl(id) {
@@ -412,9 +485,13 @@ function getAreaLevelPokemon(idx, level) {
 }
 
 function isAreaUnlocked(idx) {
-  if (idx === 0) return true;
-  // Previous area's level 1 must be complete
-  return getAreaLevelPokemon(idx - 1, 0).every(id => isCaught(id));
+  const region = AREAS[idx].region;
+  const regionIndices = AREAS.map((a, i) => ({ a, i }))
+    .filter(({ a }) => a.region === region).map(({ i }) => i);
+  const posInRegion = regionIndices.indexOf(idx);
+  if (posInRegion === 0) return true;
+  const prevIdx = regionIndices[posInRegion - 1];
+  return getAreaLevelPokemon(prevIdx, 0).every(id => isCaught(id));
 }
 
 function isLevelUnlocked(areaIdx, level) {
