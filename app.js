@@ -1,63 +1,71 @@
 // ===== CONSTANTS =====
 const SPRITE_BASE = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
 
+const REGIONS = [
+  { name: 'Kanto' }
+  // Future regions can be added here, e.g.:
+  // { name: 'Johto' },
+  // { name: 'Hoenn' },
+  // { name: 'Kalos' }
+];
+
 const AREAS = [
-  { name: 'Pallet Town', color: '#4CAF50', icon: '\u{1F3E0}', levels: [
+  { region: 'Kanto', name: 'Pallet Town', color: '#4CAF50', icon: '\u{1F3E0}', levels: [
     [1, 4, 7, 133, 25],
     [29, 32, 58, 77, 147],
     [3, 6, 9, 26, 136]
   ]},
-  { name: 'Viridian Forest', color: '#2E7D32', icon: '\u{1F332}', levels: [
+  { region: 'Kanto', name: 'Viridian Forest', color: '#2E7D32', icon: '\u{1F332}', levels: [
     [10, 13, 16, 19, 43],
     [46, 48, 69, 102, 114],
     [12, 15, 18, 45, 49]
   ]},
-  { name: 'Mt. Moon', color: '#5C6BC0', icon: '\u{26F0}\uFE0F', levels: [
+  { region: 'Kanto', name: 'Mt. Moon', color: '#5C6BC0', icon: '\u{26F0}\uFE0F', levels: [
     [35, 39, 41, 74, 95],
     [23, 27, 50, 63, 90],
     [36, 40, 76, 42, 208]
   ]},
-  { name: 'Cerulean City', color: '#0288D1', icon: '\u{1F30A}', levels: [
+  { region: 'Kanto', name: 'Cerulean City', color: '#0288D1', icon: '\u{1F30A}', levels: [
     [54, 79, 118, 120, 116],
     [60, 86, 98, 129, 138],
     [80, 117, 134, 130, 139]
   ]},
-  { name: 'Vermilion Port', color: '#E65100', icon: '\u{26F5}', levels: [
+  { region: 'Kanto', name: 'Vermilion Port', color: '#E65100', icon: '\u{26F5}', levels: [
     [100, 81, 56, 66, 72],
     [21, 84, 88, 109, 83],
     [22, 57, 59, 85, 89]
   ]},
-  { name: 'Lavender Town', color: '#7B1FA2', icon: '\u{1F47B}', levels: [
+  { region: 'Kanto', name: 'Lavender Town', color: '#7B1FA2', icon: '\u{1F47B}', levels: [
     [92, 104, 52, 37, 96],
     [106, 107, 108, 122, 124],
     [94, 53, 105, 97, 38]
   ]},
-  { name: 'Safari Zone', color: '#827717', icon: '\u{1F335}', levels: [
+  { region: 'Kanto', name: 'Safari Zone', color: '#827717', icon: '\u{1F335}', levels: [
     [111, 115, 123, 127, 128],
     [113, 131, 140, 142, 214],
     [31, 34, 112, 141, 149]
   ]},
-  { name: 'Power Plant', color: '#F9A825', icon: '\u{26A1}', levels: [
+  { region: 'Kanto', name: 'Power Plant', color: '#F9A825', icon: '\u{26A1}', levels: [
     [125, 126, 132, 137, 143],
     [144, 145, 146, 82, 101],
     [65, 68, 135, 91, 110]
   ]},
-  { name: 'Celadon City', color: '#E91E63', icon: '\u{1F338}', levels: [
+  { region: 'Kanto', name: 'Celadon City', color: '#E91E63', icon: '\u{1F338}', levels: [
     [152, 155, 158, 175, 179]
   ]},
-  { name: 'Fuchsia City', color: '#9C27B0', icon: '\u{1F3EF}', levels: [
+  { region: 'Kanto', name: 'Fuchsia City', color: '#9C27B0', icon: '\u{1F3EF}', levels: [
     [167, 198, 228, 215, 207]
   ]},
-  { name: 'Cinnabar Island', color: '#D84315', icon: '\u{1F30B}', levels: [
+  { region: 'Kanto', name: 'Cinnabar Island', color: '#D84315', icon: '\u{1F30B}', levels: [
     [218, 216, 246, 231, 227]
   ]},
-  { name: 'Seafoam Islands', color: '#00ACC1', icon: '\u{2744}\uFE0F', levels: [
+  { region: 'Kanto', name: 'Seafoam Islands', color: '#00ACC1', icon: '\u{2744}\uFE0F', levels: [
     [170, 183, 194, 220, 222]
   ]},
-  { name: 'Indigo Plateau', color: '#283593', icon: '\u{1F3C6}', levels: [
+  { region: 'Kanto', name: 'Indigo Plateau', color: '#283593', icon: '\u{1F3C6}', levels: [
     [177, 187, 204, 209, 223]
   ]},
-  { name: 'Llanfoist School', color: '#43A047', icon: '\u{1F3EB}', levels: [
+  { region: 'Kanto', name: 'Llanfoist School', color: '#43A047', icon: '\u{1F3EB}', levels: [
     [694, 870, 710, 551, 718],
     [669, 150, 151]
   ]}
@@ -312,6 +320,7 @@ function spriteUrl(id) {
 
 // ===== STATE =====
 let gameState = { caught: [], pokemon: {} };
+let currentRegionIdx = 0;
 let currentAreaIndex = null;
 let currentAreaLevel = 0;
 let encounterPokemonId = null;
@@ -467,12 +476,54 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
   btn.addEventListener('click', () => showScreen(btn.dataset.nav));
 });
 
+// ===== REGION HELPERS =====
+function getRegionAreas(regionName) {
+  return AREAS
+    .map((area, idx) => ({ area, idx }))
+    .filter(({ area }) => area.region === regionName);
+}
+
+function isRegionComplete(regionName) {
+  return getRegionAreas(regionName).every(({ idx }) =>
+    getAllAreaPokemon(idx).every(id => isCaught(id))
+  );
+}
+
 // ===== MAP SCREEN =====
 function renderMap() {
   const container = document.getElementById('map-container');
   container.innerHTML = '';
 
-  AREAS.forEach((area, idx) => {
+  const region = REGIONS[currentRegionIdx];
+  const regionAreas = getRegionAreas(region.name);
+  const regionComplete = isRegionComplete(region.name);
+  const hasPrev = currentRegionIdx > 0;
+  const hasNext = regionComplete && currentRegionIdx < REGIONS.length - 1;
+
+  // Region header with navigation arrows
+  const header = document.createElement('div');
+  header.className = 'region-header';
+  header.innerHTML = `
+    ${hasPrev ? '<button class="region-nav-btn" id="region-prev">\u25C4</button>' : '<div class="region-nav-spacer"></div>'}
+    <span class="region-name">${region.name}</span>
+    ${hasNext ? '<button class="region-nav-btn region-nav-next" id="region-next">\u25BA Next Region</button>' : '<div class="region-nav-spacer"></div>'}
+  `;
+  container.appendChild(header);
+
+  if (hasPrev) {
+    header.querySelector('#region-prev').addEventListener('click', () => {
+      currentRegionIdx--;
+      renderMap();
+    });
+  }
+  if (hasNext) {
+    header.querySelector('#region-next').addEventListener('click', () => {
+      currentRegionIdx++;
+      renderMap();
+    });
+  }
+
+  regionAreas.forEach(({ area, idx }) => {
     const unlocked = isAreaUnlocked(idx);
     const allPokemon = getAllAreaPokemon(idx);
     const caught = allPokemon.filter(id => isCaught(id)).length;
@@ -505,11 +556,12 @@ function renderMap() {
     container.appendChild(card);
   });
 
-  const totalPokemon = AREAS.reduce((sum, a) => getAllAreaPokemon(AREAS.indexOf(a)).length + sum, 0);
-  if (gameState.caught.length === totalPokemon) {
+  if (regionComplete) {
     const banner = document.createElement('div');
     banner.className = 'area-complete-msg';
-    banner.textContent = '\u{1F389} You caught them all! You\'re a Pokemon Master! \u{1F389}';
+    banner.textContent = hasNext
+      ? '\u{1F389} Region complete! Tap the arrow to explore the next region! \u{1F389}'
+      : '\u{1F389} You caught them all! You\'re a Pokemon Master! \u{1F389}';
     container.prepend(banner);
   }
 }
