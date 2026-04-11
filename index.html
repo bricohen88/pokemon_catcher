@@ -91,6 +91,7 @@
       <div class="pokedex-count" id="pokedex-count">0/20 caught</div>
     </div>
     <div class="screen-content">
+      <button class="battle-sim-btn" id="battle-sim-btn">&#x2694;&#xFE0F; Battle Simulator</button>
       <div id="pokedex-grid" class="pokemon-grid pokedex-grid"></div>
     </div>
   </section>
@@ -131,6 +132,69 @@
       </div>
     </div>
     <div id="evolve-confetti" class="confetti-container"></div>
+  </section>
+
+  <!-- BATTLE SCREEN -->
+  <section data-screen="battle" class="screen">
+    <button class="back-btn battle-back" id="battle-back-btn">&#9664; Back</button>
+    <div class="battle-container">
+      <!-- Selection Phase -->
+      <div id="battle-select" class="battle-select">
+        <div class="battle-select-title">Choose 2 Pokemon!</div>
+        <div class="battle-select-header">
+          <div class="battle-select-slot" id="battle-slot-1">
+            <div class="battle-slot-placeholder">?</div>
+            <div class="battle-slot-name">Select #1</div>
+          </div>
+          <div class="battle-select-vs">VS</div>
+          <div class="battle-select-slot" id="battle-slot-2">
+            <div class="battle-slot-placeholder">?</div>
+            <div class="battle-slot-name">Select #2</div>
+          </div>
+        </div>
+        <div class="battle-select-grid" id="battle-select-grid"></div>
+        <button id="battle-start-btn" class="battle-start-btn" style="display:none">Start Battle!</button>
+      </div>
+
+      <!-- Arena Phase -->
+      <div id="battle-arena" class="battle-arena" style="display:none">
+        <div class="battle-text" id="battle-text">Battle!</div>
+
+        <div class="battle-side battle-opponent">
+          <div class="battle-pokemon-name" id="battle-opp-name">Opponent</div>
+          <div class="battle-type" id="battle-opp-type"></div>
+          <div class="battle-hp-bar-wrap">
+            <div class="battle-hp-bar">
+              <div class="battle-hp-fill" id="battle-opp-hp-fill" style="width:100%"></div>
+            </div>
+            <div class="battle-hp-text" id="battle-opp-hp-text">100/100</div>
+          </div>
+          <div class="battle-sprite-area">
+            <img id="battle-opp-sprite" class="battle-sprite" src="" alt="Opponent" crossorigin="anonymous">
+          </div>
+        </div>
+
+        <div class="battle-side battle-player">
+          <div class="battle-sprite-area">
+            <img id="battle-player-sprite" class="battle-sprite" src="" alt="Player" crossorigin="anonymous">
+          </div>
+          <div class="battle-pokemon-name" id="battle-player-name">Player</div>
+          <div class="battle-type" id="battle-player-type"></div>
+          <div class="battle-hp-bar-wrap">
+            <div class="battle-hp-bar">
+              <div class="battle-hp-fill" id="battle-player-hp-fill" style="width:100%"></div>
+            </div>
+            <div class="battle-hp-text" id="battle-player-hp-text">100/100</div>
+          </div>
+        </div>
+
+        <div class="battle-log" id="battle-log"></div>
+
+        <button id="battle-attack-btn" class="battle-attack-btn">Attack!</button>
+        <button id="battle-continue-btn" class="battle-attack-btn" style="display:none">Continue</button>
+      </div>
+    </div>
+    <div id="battle-confetti" class="confetti-container"></div>
   </section>
 
   <!-- STICKER STUDIO SCREEN -->
