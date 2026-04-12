@@ -3,10 +3,8 @@ const SPRITE_BASE = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sp
 
 const REGIONS = [
   { name: 'Kanto' },
-  { name: 'Johto' }
-  // Future regions can be added here, e.g.:
-  // { name: 'Hoenn' },
-  // { name: 'Kalos' }
+  { name: 'Johto' },
+  { name: 'Hoenn' }
 ];
 
 const AREAS = [
@@ -88,6 +86,39 @@ const AREAS = [
   ]},
   { region: 'Johto', name: 'Tin Tower', color: '#6A1B9A', icon: '\u{2728}', levels: [
     [249, 250, 251]
+  ]},
+  // ===== HOENN =====
+  { region: 'Hoenn', name: 'Littleroot Town', color: '#66BB6A', icon: '\u{1F3E1}', levels: [
+    [252, 255, 258, 263, 276],
+    [261, 265, 293, 300, 287]
+  ]},
+  { region: 'Hoenn', name: 'Petalburg Woods', color: '#2E7D32', icon: '\u{1F332}', levels: [
+    [270, 273, 285, 283, 290],
+    [315, 331, 313, 314, 357]
+  ]},
+  { region: 'Hoenn', name: 'Rustboro City', color: '#8D6E63', icon: '\u{26CF}\uFE0F', levels: [
+    [304, 299, 328, 343, 337],
+    [345, 347, 338, 369, 327]
+  ]},
+  { region: 'Hoenn', name: 'Dewford Town', color: '#0097A7', icon: '\u{1F3D6}\uFE0F', levels: [
+    [296, 318, 320, 341, 339],
+    [307, 366, 370, 349, 298]
+  ]},
+  { region: 'Hoenn', name: 'Mauville City', color: '#FBC02D', icon: '\u{26A1}', levels: [
+    [309, 311, 312, 316, 303],
+    [302, 335, 336, 333, 352]
+  ]},
+  { region: 'Hoenn', name: 'Lavaridge Town', color: '#E64A19', icon: '\u{1F30B}', levels: [
+    [322, 324, 325, 278, 351],
+    [353, 355, 358, 359, 360]
+  ]},
+  { region: 'Hoenn', name: 'Fortree City', color: '#558B2F', icon: '\u{1F333}', levels: [
+    [371, 361, 363, 374, 280],
+    [292, 268, 384, 385, 386]
+  ]},
+  { region: 'Hoenn', name: 'Ever Grande City', color: '#1565C0', icon: '\u{1F3C6}', levels: [
+    [377, 378, 379, 380, 381],
+    [382, 383]
   ]}
 ];
 
@@ -130,10 +161,10 @@ const POKEDEX = {
   40:  { name: 'Wigglytuff',  type: 'Normal',   evolvesTo: null },
   41:  { name: 'Zubat',       type: 'Poison',   evolvesTo: 42 },
   42:  { name: 'Golbat',      type: 'Poison',   evolvesTo: null },
-  74:  { name: 'Geodude',     type: 'Ground',   evolvesTo: 75 },
-  75:  { name: 'Graveler',    type: 'Ground',   evolvesTo: 76 },
-  76:  { name: 'Golem',       type: 'Ground',   evolvesTo: null },
-  95:  { name: 'Onix',        type: 'Ground',   evolvesTo: 208 },
+  74:  { name: 'Geodude',     type: 'Rock',     evolvesTo: 75 },
+  75:  { name: 'Graveler',    type: 'Rock',     evolvesTo: 76 },
+  76:  { name: 'Golem',       type: 'Rock',     evolvesTo: null },
+  95:  { name: 'Onix',        type: 'Rock',     evolvesTo: 208 },
   208: { name: 'Steelix',     type: 'Ground',   evolvesTo: null },
   // Cerulean City
   54:  { name: 'Psyduck',     type: 'Water',    evolvesTo: 55 },
@@ -171,8 +202,8 @@ const POKEDEX = {
   104: { name: 'Cubone',      type: 'Ground',   evolvesTo: 105 },
   105: { name: 'Marowak',     type: 'Ground',   evolvesTo: null },
   // Safari Zone
-  111: { name: 'Rhyhorn',     type: 'Ground',   evolvesTo: 112 },
-  112: { name: 'Rhydon',      type: 'Ground',   evolvesTo: null },
+  111: { name: 'Rhyhorn',     type: 'Rock',     evolvesTo: 112 },
+  112: { name: 'Rhydon',      type: 'Rock',     evolvesTo: null },
   115: { name: 'Kangaskhan',  type: 'Normal',   evolvesTo: null },
   123: { name: 'Scyther',     type: 'Normal',   evolvesTo: null },
   127: { name: 'Pinsir',      type: 'Normal',   evolvesTo: null },
@@ -254,7 +285,7 @@ const POKEDEX = {
   131: { name: 'Lapras',      type: 'Water',    evolvesTo: null },
   140: { name: 'Kabuto',      type: 'Water',    evolvesTo: 141 },
   141: { name: 'Kabutops',    type: 'Water',    evolvesTo: null },
-  142: { name: 'Aerodactyl',  type: 'Ground',   evolvesTo: null },
+  142: { name: 'Aerodactyl',  type: 'Rock',     evolvesTo: null },
   214: { name: 'Heracross',   type: 'Fighting', evolvesTo: null },
   // Power Plant Lv2
   144: { name: 'Articuno',    type: 'Water',    evolvesTo: null },
@@ -279,11 +310,11 @@ const POKEDEX = {
   // Fuchsia City
   167: { name: 'Spinarak',    type: 'Poison',   evolvesTo: 168 },
   168: { name: 'Ariados',     type: 'Poison',   evolvesTo: null },
-  198: { name: 'Murkrow',     type: 'Ghost',    evolvesTo: null },
+  198: { name: 'Murkrow',     type: 'Dark',     evolvesTo: null },
   207: { name: 'Gligar',      type: 'Ground',   evolvesTo: null },
-  215: { name: 'Sneasel',     type: 'Ghost',    evolvesTo: null },
-  228: { name: 'Houndour',    type: 'Fire',     evolvesTo: 229 },
-  229: { name: 'Houndoom',    type: 'Fire',     evolvesTo: null },
+  215: { name: 'Sneasel',     type: 'Dark',     evolvesTo: null },
+  228: { name: 'Houndour',    type: 'Dark',     evolvesTo: 229 },
+  229: { name: 'Houndoom',    type: 'Dark',     evolvesTo: null },
   // Cinnabar Island
   216: { name: 'Teddiursa',   type: 'Normal',   evolvesTo: 217 },
   217: { name: 'Ursaring',    type: 'Normal',   evolvesTo: null },
@@ -292,9 +323,9 @@ const POKEDEX = {
   227: { name: 'Skarmory',    type: 'Ground',   evolvesTo: null },
   231: { name: 'Phanpy',      type: 'Ground',   evolvesTo: 232 },
   232: { name: 'Donphan',     type: 'Ground',   evolvesTo: null },
-  246: { name: 'Larvitar',    type: 'Ground',   evolvesTo: 247 },
-  247: { name: 'Pupitar',     type: 'Ground',   evolvesTo: 248 },
-  248: { name: 'Tyranitar',   type: 'Ground',   evolvesTo: null },
+  246: { name: 'Larvitar',    type: 'Rock',     evolvesTo: 247 },
+  247: { name: 'Pupitar',     type: 'Rock',     evolvesTo: 248 },
+  248: { name: 'Tyranitar',   type: 'Rock',     evolvesTo: null },
   // Seafoam Islands
   170: { name: 'Chinchou',    type: 'Electric', evolvesTo: 171 },
   171: { name: 'Lanturn',     type: 'Electric', evolvesTo: null },
@@ -304,7 +335,7 @@ const POKEDEX = {
   195: { name: 'Quagsire',    type: 'Water',    evolvesTo: null },
   220: { name: 'Swinub',      type: 'Ground',   evolvesTo: 221 },
   221: { name: 'Piloswine',   type: 'Ground',   evolvesTo: null },
-  222: { name: 'Corsola',     type: 'Water',    evolvesTo: null },
+  222: { name: 'Corsola',     type: 'Rock',     evolvesTo: null },
   // Indigo Plateau
   177: { name: 'Natu',        type: 'Psychic',  evolvesTo: 178 },
   178: { name: 'Xatu',        type: 'Psychic',  evolvesTo: null },
@@ -349,7 +380,7 @@ const POKEDEX = {
   // Ilex Forest
   165: { name: 'Ledyba',      type: 'Normal',   evolvesTo: 166 },
   166: { name: 'Ledian',      type: 'Normal',   evolvesTo: null },
-  185: { name: 'Sudowoodo',   type: 'Ground',   evolvesTo: null },
+  185: { name: 'Sudowoodo',   type: 'Rock',     evolvesTo: null },
   191: { name: 'Sunkern',     type: 'Grass',    evolvesTo: 192 },
   192: { name: 'Sunflora',    type: 'Grass',    evolvesTo: null },
   201: { name: 'Unown',       type: 'Psychic',  evolvesTo: null },
@@ -358,10 +389,10 @@ const POKEDEX = {
   182: { name: 'Bellossom',   type: 'Grass',    evolvesTo: null },
   200: { name: 'Misdreavus',  type: 'Ghost',    evolvesTo: null },
   212: { name: 'Scizor',      type: 'Normal',   evolvesTo: null },
-  213: { name: 'Shuckle',     type: 'Ground',   evolvesTo: null },
+  213: { name: 'Shuckle',     type: 'Rock',     evolvesTo: null },
   // Goldenrod City
   196: { name: 'Espeon',      type: 'Psychic',  evolvesTo: null },
-  197: { name: 'Umbreon',     type: 'Ghost',    evolvesTo: null },
+  197: { name: 'Umbreon',     type: 'Dark',     evolvesTo: null },
   199: { name: 'Slowking',    type: 'Water',    evolvesTo: null },
   202: { name: 'Wobbuffet',   type: 'Psychic',  evolvesTo: null },
   241: { name: 'Miltank',     type: 'Normal',   evolvesTo: null },
@@ -384,21 +415,167 @@ const POKEDEX = {
   // Tin Tower
   249: { name: 'Lugia',       type: 'Psychic',  evolvesTo: null },
   250: { name: 'Ho-Oh',       type: 'Fire',     evolvesTo: null },
-  251: { name: 'Celebi',      type: 'Grass',    evolvesTo: null }
+  251: { name: 'Celebi',      type: 'Grass',    evolvesTo: null },
+  // ===== HOENN =====
+  // Littleroot Town
+  252: { name: 'Treecko',     type: 'Grass',    evolvesTo: 253 },
+  253: { name: 'Grovyle',     type: 'Grass',    evolvesTo: 254 },
+  254: { name: 'Sceptile',    type: 'Grass',    evolvesTo: null },
+  255: { name: 'Torchic',     type: 'Fire',     evolvesTo: 256 },
+  256: { name: 'Combusken',   type: 'Fire',     evolvesTo: 257 },
+  257: { name: 'Blaziken',    type: 'Fire',     evolvesTo: null },
+  258: { name: 'Mudkip',      type: 'Water',    evolvesTo: 259 },
+  259: { name: 'Marshtomp',   type: 'Water',    evolvesTo: 260 },
+  260: { name: 'Swampert',    type: 'Water',    evolvesTo: null },
+  263: { name: 'Zigzagoon',   type: 'Normal',   evolvesTo: 264 },
+  264: { name: 'Linoone',     type: 'Normal',   evolvesTo: null },
+  276: { name: 'Taillow',     type: 'Normal',   evolvesTo: 277 },
+  277: { name: 'Swellow',     type: 'Normal',   evolvesTo: null },
+  261: { name: 'Poochyena',   type: 'Dark',     evolvesTo: 262 },
+  262: { name: 'Mightyena',   type: 'Dark',     evolvesTo: null },
+  265: { name: 'Wurmple',     type: 'Normal',   evolvesTo: 266 },
+  266: { name: 'Silcoon',     type: 'Normal',   evolvesTo: 267 },
+  267: { name: 'Beautifly',   type: 'Normal',   evolvesTo: null },
+  293: { name: 'Whismur',     type: 'Normal',   evolvesTo: 294 },
+  294: { name: 'Loudred',     type: 'Normal',   evolvesTo: 295 },
+  295: { name: 'Exploud',     type: 'Normal',   evolvesTo: null },
+  300: { name: 'Skitty',      type: 'Normal',   evolvesTo: 301 },
+  301: { name: 'Delcatty',    type: 'Normal',   evolvesTo: null },
+  287: { name: 'Slakoth',     type: 'Normal',   evolvesTo: 288 },
+  288: { name: 'Vigoroth',    type: 'Normal',   evolvesTo: 289 },
+  289: { name: 'Slaking',     type: 'Normal',   evolvesTo: null },
+  // Petalburg Woods
+  270: { name: 'Lotad',       type: 'Grass',    evolvesTo: 271 },
+  271: { name: 'Lombre',      type: 'Grass',    evolvesTo: 272 },
+  272: { name: 'Ludicolo',    type: 'Grass',    evolvesTo: null },
+  273: { name: 'Seedot',      type: 'Grass',    evolvesTo: 274 },
+  274: { name: 'Nuzleaf',     type: 'Dark',     evolvesTo: 275 },
+  275: { name: 'Shiftry',     type: 'Dark',     evolvesTo: null },
+  285: { name: 'Shroomish',   type: 'Grass',    evolvesTo: 286 },
+  286: { name: 'Breloom',     type: 'Grass',    evolvesTo: null },
+  283: { name: 'Surskit',     type: 'Water',    evolvesTo: 284 },
+  284: { name: 'Masquerain',  type: 'Normal',   evolvesTo: null },
+  290: { name: 'Nincada',     type: 'Ground',   evolvesTo: 291 },
+  291: { name: 'Ninjask',     type: 'Normal',   evolvesTo: null },
+  315: { name: 'Roselia',     type: 'Grass',    evolvesTo: null },
+  331: { name: 'Cacnea',      type: 'Grass',    evolvesTo: 332 },
+  332: { name: 'Cacturne',    type: 'Dark',     evolvesTo: null },
+  313: { name: 'Volbeat',     type: 'Normal',   evolvesTo: null },
+  314: { name: 'Illumise',    type: 'Normal',   evolvesTo: null },
+  357: { name: 'Tropius',     type: 'Grass',    evolvesTo: null },
+  // Rustboro City
+  304: { name: 'Aron',        type: 'Rock',     evolvesTo: 305 },
+  305: { name: 'Lairon',      type: 'Rock',     evolvesTo: 306 },
+  306: { name: 'Aggron',      type: 'Rock',     evolvesTo: null },
+  299: { name: 'Nosepass',    type: 'Rock',     evolvesTo: null },
+  328: { name: 'Trapinch',    type: 'Ground',   evolvesTo: 329 },
+  329: { name: 'Vibrava',     type: 'Ground',   evolvesTo: 330 },
+  330: { name: 'Flygon',      type: 'Ground',   evolvesTo: null },
+  343: { name: 'Baltoy',      type: 'Ground',   evolvesTo: 344 },
+  344: { name: 'Claydol',     type: 'Ground',   evolvesTo: null },
+  337: { name: 'Lunatone',    type: 'Rock',     evolvesTo: null },
+  345: { name: 'Lileep',      type: 'Rock',     evolvesTo: 346 },
+  346: { name: 'Cradily',     type: 'Rock',     evolvesTo: null },
+  347: { name: 'Anorith',     type: 'Rock',     evolvesTo: 348 },
+  348: { name: 'Armaldo',     type: 'Rock',     evolvesTo: null },
+  338: { name: 'Solrock',     type: 'Rock',     evolvesTo: null },
+  369: { name: 'Relicanth',   type: 'Rock',     evolvesTo: null },
+  327: { name: 'Spinda',      type: 'Normal',   evolvesTo: null },
+  // Dewford Town
+  296: { name: 'Makuhita',    type: 'Fighting', evolvesTo: 297 },
+  297: { name: 'Hariyama',    type: 'Fighting', evolvesTo: null },
+  318: { name: 'Carvanha',    type: 'Dark',     evolvesTo: 319 },
+  319: { name: 'Sharpedo',    type: 'Dark',     evolvesTo: null },
+  320: { name: 'Wailmer',     type: 'Water',    evolvesTo: 321 },
+  321: { name: 'Wailord',     type: 'Water',    evolvesTo: null },
+  341: { name: 'Corphish',    type: 'Water',    evolvesTo: 342 },
+  342: { name: 'Crawdaunt',   type: 'Dark',     evolvesTo: null },
+  339: { name: 'Barboach',    type: 'Water',    evolvesTo: 340 },
+  340: { name: 'Whiscash',    type: 'Water',    evolvesTo: null },
+  307: { name: 'Meditite',    type: 'Psychic',  evolvesTo: 308 },
+  308: { name: 'Medicham',    type: 'Psychic',  evolvesTo: null },
+  366: { name: 'Clamperl',    type: 'Water',    evolvesTo: 367 },
+  367: { name: 'Huntail',     type: 'Water',    evolvesTo: null },
+  368: { name: 'Gorebyss',    type: 'Water',    evolvesTo: null },
+  370: { name: 'Luvdisc',     type: 'Water',    evolvesTo: null },
+  349: { name: 'Feebas',      type: 'Water',    evolvesTo: 350 },
+  350: { name: 'Milotic',     type: 'Water',    evolvesTo: null },
+  298: { name: 'Azurill',     type: 'Normal',   evolvesTo: 183 },
+  // Mauville City
+  309: { name: 'Electrike',   type: 'Electric', evolvesTo: 310 },
+  310: { name: 'Manectric',   type: 'Electric', evolvesTo: null },
+  311: { name: 'Plusle',       type: 'Electric', evolvesTo: null },
+  312: { name: 'Minun',        type: 'Electric', evolvesTo: null },
+  316: { name: 'Gulpin',      type: 'Poison',   evolvesTo: 317 },
+  317: { name: 'Swalot',      type: 'Poison',   evolvesTo: null },
+  303: { name: 'Mawile',      type: 'Normal',   evolvesTo: null },
+  302: { name: 'Sableye',     type: 'Dark',     evolvesTo: null },
+  335: { name: 'Zangoose',    type: 'Normal',   evolvesTo: null },
+  336: { name: 'Seviper',     type: 'Poison',   evolvesTo: null },
+  333: { name: 'Swablu',      type: 'Normal',   evolvesTo: 334 },
+  334: { name: 'Altaria',     type: 'Normal',   evolvesTo: null },
+  352: { name: 'Kecleon',     type: 'Normal',   evolvesTo: null },
+  // Lavaridge Town
+  322: { name: 'Numel',       type: 'Fire',     evolvesTo: 323 },
+  323: { name: 'Camerupt',    type: 'Fire',     evolvesTo: null },
+  324: { name: 'Torkoal',     type: 'Fire',     evolvesTo: null },
+  325: { name: 'Spoink',      type: 'Psychic',  evolvesTo: 326 },
+  326: { name: 'Grumpig',     type: 'Psychic',  evolvesTo: null },
+  278: { name: 'Wingull',     type: 'Water',    evolvesTo: 279 },
+  279: { name: 'Pelipper',    type: 'Water',    evolvesTo: null },
+  351: { name: 'Castform',    type: 'Normal',   evolvesTo: null },
+  353: { name: 'Shuppet',     type: 'Ghost',    evolvesTo: 354 },
+  354: { name: 'Banette',     type: 'Ghost',    evolvesTo: null },
+  355: { name: 'Duskull',     type: 'Ghost',    evolvesTo: 356 },
+  356: { name: 'Dusclops',    type: 'Ghost',    evolvesTo: null },
+  358: { name: 'Chimecho',    type: 'Psychic',  evolvesTo: null },
+  359: { name: 'Absol',       type: 'Dark',     evolvesTo: null },
+  360: { name: 'Wynaut',      type: 'Psychic',  evolvesTo: 202 },
+  // Fortree City
+  371: { name: 'Bagon',       type: 'Normal',   evolvesTo: 372 },
+  372: { name: 'Shelgon',     type: 'Normal',   evolvesTo: 373 },
+  373: { name: 'Salamence',   type: 'Normal',   evolvesTo: null },
+  361: { name: 'Snorunt',     type: 'Water',    evolvesTo: 362 },
+  362: { name: 'Glalie',      type: 'Water',    evolvesTo: null },
+  363: { name: 'Spheal',      type: 'Water',    evolvesTo: 364 },
+  364: { name: 'Sealeo',      type: 'Water',    evolvesTo: 365 },
+  365: { name: 'Walrein',     type: 'Water',    evolvesTo: null },
+  374: { name: 'Beldum',      type: 'Psychic',  evolvesTo: 375 },
+  375: { name: 'Metang',      type: 'Psychic',  evolvesTo: 376 },
+  376: { name: 'Metagross',   type: 'Psychic',  evolvesTo: null },
+  280: { name: 'Ralts',       type: 'Psychic',  evolvesTo: 281 },
+  281: { name: 'Kirlia',      type: 'Psychic',  evolvesTo: 282 },
+  282: { name: 'Gardevoir',   type: 'Psychic',  evolvesTo: null },
+  292: { name: 'Shedinja',    type: 'Ghost',    evolvesTo: null },
+  268: { name: 'Cascoon',     type: 'Poison',   evolvesTo: 269 },
+  269: { name: 'Dustox',      type: 'Poison',   evolvesTo: null },
+  // Ever Grande City
+  377: { name: 'Regirock',    type: 'Rock',     evolvesTo: null },
+  378: { name: 'Regice',      type: 'Water',    evolvesTo: null },
+  379: { name: 'Registeel',   type: 'Ground',   evolvesTo: null },
+  380: { name: 'Latias',      type: 'Psychic',  evolvesTo: null },
+  381: { name: 'Latios',      type: 'Psychic',  evolvesTo: null },
+  382: { name: 'Kyogre',      type: 'Water',    evolvesTo: null },
+  383: { name: 'Groudon',     type: 'Ground',   evolvesTo: null },
+  384: { name: 'Rayquaza',    type: 'Normal',   evolvesTo: null },
+  385: { name: 'Jirachi',     type: 'Psychic',  evolvesTo: null },
+  386: { name: 'Deoxys',      type: 'Psychic',  evolvesTo: null }
 };
 
 // ===== TYPE CHART =====
 const TYPE_CHART = {
-  Fire:     { Grass: 1.5, Water: 0.75, Fire: 0.75, Ground: 0.75 },
-  Water:    { Fire: 1.5, Ground: 1.5, Water: 0.75, Grass: 0.75 },
-  Grass:    { Water: 1.5, Ground: 1.5, Grass: 0.75, Fire: 0.75, Poison: 0.75 },
+  Fire:     { Grass: 1.5, Water: 0.75, Fire: 0.75, Rock: 0.75 },
+  Water:    { Fire: 1.5, Ground: 1.5, Rock: 1.5, Water: 0.75, Grass: 0.75 },
+  Grass:    { Water: 1.5, Ground: 1.5, Rock: 1.5, Grass: 0.75, Fire: 0.75, Poison: 0.75 },
   Electric: { Water: 1.5, Ground: 0.75, Electric: 0.75, Grass: 0.75 },
-  Normal:   { Ghost: 0.75 },
-  Psychic:  { Fighting: 1.5, Poison: 1.5, Psychic: 0.75 },
-  Ghost:    { Psychic: 1.5, Ghost: 1.5, Normal: 0.75, Fighting: 0.75 },
-  Fighting: { Normal: 1.5, Ground: 0.75, Psychic: 0.75, Ghost: 0.75, Poison: 0.75 },
-  Poison:   { Grass: 1.5, Poison: 0.75, Ground: 0.75, Ghost: 0.75 },
-  Ground:   { Fire: 1.5, Electric: 1.5, Poison: 1.5, Water: 0.75, Grass: 0.75 }
+  Normal:   { Ghost: 0.75, Rock: 0.75 },
+  Psychic:  { Fighting: 1.5, Poison: 1.5, Psychic: 0.75, Dark: 0.75 },
+  Ghost:    { Psychic: 1.5, Ghost: 1.5, Normal: 0.75, Dark: 0.75 },
+  Fighting: { Normal: 1.5, Rock: 1.5, Dark: 1.5, Psychic: 0.75, Ghost: 0.75, Poison: 0.75 },
+  Poison:   { Grass: 1.5, Poison: 0.75, Ground: 0.75, Rock: 0.75, Ghost: 0.75 },
+  Ground:   { Fire: 1.5, Electric: 1.5, Poison: 1.5, Rock: 1.5, Water: 0.75, Grass: 0.75 },
+  Rock:     { Fire: 1.5, Normal: 1.5, Poison: 1.5, Fighting: 0.75, Ground: 0.75 },
+  Dark:     { Psychic: 1.5, Ghost: 1.5, Fighting: 0.75, Dark: 0.75 }
 };
 
 function getTypeMultiplier(atkType, defType) {
@@ -1414,12 +1591,33 @@ function renderBattle() {
   document.getElementById('battle-select').style.display = '';
   document.getElementById('battle-arena').style.display = 'none';
   battleSelection = [null, null];
+
+  // Reset filters
+  const searchInput = document.getElementById('battle-search');
+  const typeFilter = document.getElementById('battle-type-filter');
+  searchInput.value = '';
+  searchInput.oninput = () => filterBattleGrid();
+  typeFilter.onchange = () => filterBattleGrid();
+
+  // Populate type filter dropdown
+  const types = [...new Set(Object.values(POKEDEX).map(p => p.type))].sort();
+  typeFilter.innerHTML = '<option value="">All Types</option>';
+  types.forEach(t => {
+    const opt = document.createElement('option');
+    opt.value = t;
+    opt.textContent = t;
+    typeFilter.appendChild(opt);
+  });
+
   renderBattleSelect();
 }
 
 function renderBattleSelect() {
   const grid = document.getElementById('battle-select-grid');
   grid.innerHTML = '';
+
+  const searchQuery = (document.getElementById('battle-search').value || '').toLowerCase();
+  const typeQuery = document.getElementById('battle-type-filter').value;
 
   // Get all unique caught Pokemon (base forms from areas + evolved forms)
   const baseIds = AREAS.flatMap((_, i) => getAllAreaPokemon(i));
@@ -1437,8 +1635,14 @@ function renderBattleSelect() {
 
   caughtPokemon.forEach(({ formId }) => {
     const entry = POKEDEX[formId];
+    // Filter by name (starts with)
+    if (searchQuery && !entry.name.toLowerCase().startsWith(searchQuery)) return;
+    // Filter by type
+    if (typeQuery && entry.type !== typeQuery) return;
+
     const card = document.createElement('div');
     card.className = 'battle-pick-card';
+    if (battleSelection.includes(formId)) card.classList.add('selected');
     card.innerHTML = `
       <img src="${spriteUrl(formId)}" alt="${entry.name}" crossorigin="anonymous">
       <div class="pick-name">${entry.name}</div>
@@ -1450,25 +1654,31 @@ function renderBattleSelect() {
       if (selIdx !== -1) {
         battleSelection[selIdx] = null;
         updateBattleSlots();
-        card.classList.remove('selected');
         document.getElementById('battle-start-btn').style.display = 'none';
+        filterBattleGrid();
         return;
       }
       // Select into first empty slot
       const emptySlot = battleSelection.indexOf(null);
       if (emptySlot === -1) return;
       battleSelection[emptySlot] = formId;
-      card.classList.add('selected');
       updateBattleSlots();
       if (battleSelection[0] !== null && battleSelection[1] !== null) {
         document.getElementById('battle-start-btn').style.display = '';
       }
+      filterBattleGrid();
     });
     grid.appendChild(card);
   });
 
   updateBattleSlots();
-  document.getElementById('battle-start-btn').style.display = 'none';
+  if (battleSelection[0] === null || battleSelection[1] === null) {
+    document.getElementById('battle-start-btn').style.display = 'none';
+  }
+}
+
+function filterBattleGrid() {
+  renderBattleSelect();
 }
 
 function updateBattleSlots() {
@@ -2360,6 +2570,13 @@ function renderSticker() {
   });
 
   // Render pokemon sticker strip
+  const searchInput = document.getElementById('sticker-search');
+  searchInput.value = '';
+  searchInput.oninput = () => filterStickerStrip(searchInput.value);
+  filterStickerStrip('');
+}
+
+function filterStickerStrip(query) {
   const strip = document.getElementById('sticker-strip');
   strip.innerHTML = '';
 
@@ -2369,11 +2586,14 @@ function renderSticker() {
     return;
   }
 
+  const q = query.toLowerCase();
   [...gameState.caught].sort((a, b) => a - b).forEach(id => {
+    const name = getDisplayName(id);
+    if (q && !name.toLowerCase().startsWith(q)) return;
     const displayId = getDisplayId(id);
     const item = document.createElement('div');
     item.className = 'sticker-strip-item';
-    item.innerHTML = `<img src="${spriteUrl(displayId)}" alt="${getDisplayName(id)}" crossorigin="anonymous">`;
+    item.innerHTML = `<img src="${spriteUrl(displayId)}" alt="${name}" crossorigin="anonymous">`;
     item.addEventListener('click', () => addStickerToCanvas(displayId));
     strip.appendChild(item);
   });

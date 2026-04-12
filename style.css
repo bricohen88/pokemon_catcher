@@ -1189,6 +1189,21 @@ html, body {
   padding-left: 2px;
 }
 
+.sticker-search {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 20px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  margin-bottom: 6px;
+  box-sizing: border-box;
+}
+.sticker-search:focus {
+  border-color: var(--primary);
+}
+
 /* Background strip */
 .sticker-bg-strip {
   display: flex;
@@ -1357,6 +1372,7 @@ html, body {
   flex-shrink: 0;
   width: 100%;
   padding: 14px 16px;
+  margin-bottom: 16px;
   border: none;
   border-radius: var(--radius-sm);
   font-family: inherit;
@@ -1485,6 +1501,39 @@ html, body {
   color: #e74c3c;
   text-shadow: 0 2px 8px rgba(231,76,60,0.5);
 }
+
+.battle-filter-bar {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 8px;
+}
+.battle-search {
+  flex: 1;
+  padding: 8px 12px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 20px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+.battle-search::placeholder { color: rgba(255,255,255,0.5); }
+.battle-search:focus { border-color: rgba(255,255,255,0.6); }
+.battle-type-filter {
+  padding: 8px 10px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 12px;
+  font-size: 13px;
+  font-family: inherit;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+}
+.battle-type-filter option { color: #333; background: #fff; }
 
 .battle-select-grid {
   display: grid;

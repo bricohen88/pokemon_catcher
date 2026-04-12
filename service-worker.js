@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pokemon-pwa-v25';
+const CACHE_NAME = 'pokemon-pwa-v27';
 const SPRITE_CACHE = 'sprites-v1';
 const FONT_CACHE = 'fonts-v1';
 

@@ -152,6 +152,12 @@
             <div class="battle-slot-name">Select #2</div>
           </div>
         </div>
+        <div class="battle-filter-bar">
+          <input type="text" class="battle-search" id="battle-search" placeholder="Search Pokemon...">
+          <select class="battle-type-filter" id="battle-type-filter">
+            <option value="">All Types</option>
+          </select>
+        </div>
         <div class="battle-select-grid" id="battle-select-grid"></div>
         <button id="battle-start-btn" class="battle-start-btn" style="display:none">Start Battle!</button>
       </div>
@@ -218,6 +224,7 @@
       </div>
       <div class="sticker-section">
         <div class="sticker-section-label">Your Pokemon stickers:</div>
+        <input type="text" class="sticker-search" id="sticker-search" placeholder="Search Pokemon...">
         <div class="sticker-strip" id="sticker-strip"></div>
       </div>
       <button class="save-btn sticker-save-btn" id="save-sticker-btn">Save Image</button>
